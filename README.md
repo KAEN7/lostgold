@@ -17,13 +17,11 @@
 ### FRONT
 
 - HTML
+- CSS3
 - Styled Components
 - React
+- Next.js
 
 ### BACK
 
 - Vercel
-- NoSql
-- MongoDB
-- Node.js
-- Express
