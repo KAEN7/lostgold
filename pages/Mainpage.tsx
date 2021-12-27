@@ -5,29 +5,29 @@ import Goldpage from "../page/Goldpage";
 import SectionBtn from "../components/SectionBtn";
 
 const MainSectionBox = styled.div`
-  display: flex;
-  width: 100%;
-  height: 100%;
+	display: flex;
+	width: 100%;
+	height: 100%;
 `;
 
 const MainpageList = styled.ul`
-  display: flex;
-  flex-direction: column;
-  li {
-    cursor: auto;
-  }
+	display: flex;
+	flex-direction: column;
+	li {
+		cursor: auto;
+	}
 `;
 
 function Mainpage() {
-  return (
-    <MainSectionBox>
-      <SectionBtn />
-      <MainpageList>
-        <MainSection />
-        <Goldpage />
-      </MainpageList>
-    </MainSectionBox>
-  );
+	return (
+		<MainSectionBox>
+			<SectionBtn />
+			<MainpageList>
+				<MainSection />
+				<Goldpage />
+			</MainpageList>
+		</MainSectionBox>
+	);
 }
 
 export default Mainpage;
