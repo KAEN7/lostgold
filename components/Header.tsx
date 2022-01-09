@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import Link from "next/Link";
 import { flexCenter, color } from "../styles/theme";
 
 const HeaderSection = styled.header`
@@ -12,7 +13,7 @@ const HeaderSection = styled.header`
 	box-sizing: border-box;
 `;
 
-const HeaderBtn = styled.button`
+const HeaderBtn = styled.a`
 	${flexCenter}
 
 	width: 5rem;
@@ -38,12 +39,14 @@ function Header() {
 	return (
 		<HeaderSection>
 			{list.map((el, index) => (
-				<HeaderBtn
-					color={isBoxSelect[index]}
-					onClick={() => focusHandler(index)}
-				>
-					{el}
-				</HeaderBtn>
+				<Link href={`/${el.toLowerCase()}`}>
+					<HeaderBtn
+						color={isBoxSelect[index]}
+						onClick={() => focusHandler(index)}
+					>
+						{el}
+					</HeaderBtn>
+				</Link>
 			))}
 		</HeaderSection>
 	);
