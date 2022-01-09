@@ -1,17 +1,11 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import Link from "next/Link";
+import { ThemeProvider } from "styled-components";
+import { GlobalStyle } from "../styles/global-style";
+import { theme } from "../styles/theme";
 
 function MyApp({ Component, pageProps }: AppProps) {
-	return;
-	<>
-		<Component {...pageProps} />
-		<>
-			<Link href="/gold">
-				<a>Gold</a>
-			</Link>
-		</>
-	</>;
+	return <Component {...pageProps} />;
 }
 
 export default MyApp;
