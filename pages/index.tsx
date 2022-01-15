@@ -4,6 +4,7 @@ import styles from "../styles/Home.module.css";
 import { useRouter } from "next/dist/client/router";
 import { useEffect } from "react";
 import Header from "../components/Header";
+import MyApp from "./_app";
 
 const Home: NextPage = () => {
 	return (
@@ -20,6 +21,11 @@ const Home: NextPage = () => {
 			{/* 메뉴 */}
 
 			{/* 컨텐츠 */}
+			{/* <MyApp
+				pageProps={undefined}
+				Component={undefined}
+				router={undefined}
+			></MyApp> */}
 		</div>
 	);
 };

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useState } from "react";
 import styled from "styled-components";
 import { flexCenter, color } from "../styles/theme";
@@ -12,7 +13,11 @@ const HeaderSection = styled.header`
 	box-sizing: border-box;
 `;
 
-const HeaderBtn = styled.button`
+interface IHeaderBtnType {
+	color?: (string & boolean[]) | undefined;
+}
+
+const HeaderBtn = styled.button<IHeaderBtnType>`
 	${flexCenter}
 
 	width: 5rem;
@@ -29,7 +34,7 @@ function Header() {
 	const list = ["Home", "Gold", "Setting"];
 	const [isBoxSelect, setBoxSelect] = useState([true, false, false]);
 
-	const focusHandler = (index: any) => {
+	const focusHandler = (index: number) => {
 		const newArr = Array(list.length).fill(false);
 		newArr[index] = true;
 		setBoxSelect(newArr);
@@ -39,10 +44,13 @@ function Header() {
 		<HeaderSection>
 			{list.map((el, index) => (
 				<HeaderBtn
+					key={`header${index}`}
 					color={isBoxSelect[index]}
 					onClick={() => focusHandler(index)}
 				>
-					{el}
+					<Link href={el.toLowerCase()} passHref>
+						<a>{el}</a>
+					</Link>
 				</HeaderBtn>
 			))}
 		</HeaderSection>
