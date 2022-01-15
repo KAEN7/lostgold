@@ -31,7 +31,11 @@ const CheckItem = styled.div<ICheckItem>`
 	background: ${(props) => (props.color ? color.point : "none")};
 `;
 
-const CheckBox: React.FC = () => {
+export interface ICheckBox {
+	children?: string;
+}
+
+const CheckBox: React.FC<ICheckBox> = ({ children }) => {
 	const [checked, setChecked] = useState(false); // 체크박스 유무
 	const [title, setTitle] = useState(false); // title 상태값
 	const [titleValue, setTitleValue] = useState("입력"); // title value 상태값
