@@ -11,4 +11,4 @@ export default {
 const Template: Story<ICheckBox> = (args) => <TableRow {...args} />;
 
 export const Basic = Template.bind({});
-Basic.args = { children: "", name: "카엔이었소", job: "창술사" };
+Basic.args = { children: "", name: "캐릭터명", job: "직업" };

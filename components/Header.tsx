@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import styled from "styled-components";
 import { flexCenter, color } from "../styles/theme";
 
@@ -34,24 +34,24 @@ function Header() {
 	const list = ["Home", "Gold", "Setting"];
 	const [isBoxSelect, setBoxSelect] = useState([true, false, false]);
 
-	const focusHandler = (index: number) => {
+	const focusHandler = useCallback((index: number) => {
 		const newArr = Array(list.length).fill(false);
 		newArr[index] = true;
 		setBoxSelect(newArr);
-	};
+	}, []);
 
 	return (
 		<HeaderSection>
 			{list.map((el, index) => (
-				<HeaderBtn
-					key={`header${index}`}
-					color={isBoxSelect[index]}
-					onClick={() => focusHandler(index)}
-				>
-					<Link href={el.toLowerCase()} passHref>
-						<a>{el}</a>
-					</Link>
-				</HeaderBtn>
+				<Link href={el.toLowerCase()} passHref>
+					<HeaderBtn
+						key={`header${index}`}
+						color={isBoxSelect[index]}
+						onClick={() => focusHandler(index)}
+					>
+						{el}
+					</HeaderBtn>
+				</Link>
 			))}
 		</HeaderSection>
 	);

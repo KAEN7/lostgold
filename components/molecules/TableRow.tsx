@@ -42,7 +42,7 @@ export interface ICheckBox {
 }
 
 const TableRow: React.FC<ICheckBox> = ({ name, job }) => {
-	const [hover, setHover] = useState(true);
+	const [hover, setHover] = useState(false);
 
 	return (
 		<ItemRow>
@@ -51,9 +51,8 @@ const TableRow: React.FC<ICheckBox> = ({ name, job }) => {
 				onMouseLeave={() => setHover(false)}
 			>
 				<Image src="/" width="4" height="4" />
-				{/* todo hover시 보이게 적용 */}
 
-				<span>
+				<span style={{ marginLeft: "3px" }}>
 					{hover && <HoverBox job={job} direction={false} />}
 					{name}
 				</span>
