@@ -1,20 +1,25 @@
-import Document, { DocumentContext } from "next/document";
+import Document, {
+	Html,
+	Head,
+	Main,
+	NextScript,
+	DocumentContext,
+} from "next/document";
 import { ServerStyleSheet } from "styled-components";
 
-class CustomDocument extends Document {
-	static async getInitialProps(ctx: DocumentContext) {
+export default class MyDocument extends Document {
+	static async getInitialProps(ctx: any) {
 		const sheet = new ServerStyleSheet();
 		const originalRenderPage = ctx.renderPage;
 
 		try {
 			ctx.renderPage = () =>
 				originalRenderPage({
-					enhanceApp: (App) => (props) =>
+					enhanceApp: (App: any) => (props: any) =>
 						sheet.collectStyles(<App {...props} />),
 				});
 
 			const initialProps = await Document.getInitialProps(ctx);
-
 			return {
 				...initialProps,
 				styles: (
@@ -24,12 +29,22 @@ class CustomDocument extends Document {
 					</>
 				),
 			};
-		} catch (error) {
-			throw error;
 		} finally {
 			sheet.seal();
 		}
 	}
-}
 
-export default CustomDocument;
+	// 여기부터는 문서 공통 정보를 다루는 기존 _document 파일의 역할과 동일합니다.
+	render() {
+		return (
+			<Html>
+				<Head>
+					<body>
+						<Main />
+						<NextScript />
+					</body>
+				</Head>
+			</Html>
+		);
+	}
+}
