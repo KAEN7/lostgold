@@ -5,6 +5,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { flexCenter, color } from "../../styles/theme";
 import CheckBox from "../atoms/CheckBox";
+import HoverBox from "../atoms/HoverBox";
 
 const ItemRow = styled.div`
 	display: flex;
@@ -21,14 +22,16 @@ const ItemHeader = styled.div`
 	${flexCenter}
 
 	height: 90%;
+	min-width: 6rem;
 	border-right: 0.14rem solid ${color.gray};
+	cursor: pointer;
 
 	span {
-		font-weight: bold;
-	}
+		${flexCenter}
 
-	.hoverSpan {
-		display: none;
+		font-weight: bold;
+		text-align: center;
+		position: relative;
 	}
 `;
 
@@ -39,15 +42,20 @@ export interface ICheckBox {
 }
 
 const TableRow: React.FC<ICheckBox> = ({ name, job }) => {
+	const [hover, setHover] = useState(true);
+
 	return (
 		<ItemRow>
-			<ItemHeader>
+			<ItemHeader
+				onMouseEnter={() => setHover(true)}
+				onMouseLeave={() => setHover(false)}
+			>
 				<Image src="/" width="4" height="4" />
 				{/* todo hover시 보이게 적용 */}
 
 				<span>
+					{hover && <HoverBox job={job} direction={false} />}
 					{name}
-					<span className="hoverSpan">{job}</span>
 				</span>
 			</ItemHeader>
 
