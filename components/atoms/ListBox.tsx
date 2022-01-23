@@ -9,13 +9,30 @@ const ListSection = styled.ul`
 	text-align: center;
 	position: absolute;
 	width: fit-content;
+	height: 10rem;
 	padding: 8px;
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
 	border-radius: 8px;
 	background: #333;
-	color: #fff;
+	color: ${color.white};
 	font-size: 14px;
+
+	overflow-y: auto;
+	.scroll-test::-webkit-scrollbar {
+		width: 2px;
+	}
+	.scroll-test::-webkit-scrollbar-track {
+		background-color: transparent;
+	}
+	.scroll-test::-webkit-scrollbar-thumb {
+		border-radius: 3px;
+		background-color: gray;
+	}
+	.scroll-test::-webkit-scrollbar-button {
+		width: 0;
+		height: 0;
+	}
 `;
 
 const ListItem = styled.li`
@@ -30,13 +47,13 @@ interface IListItem {
 }
 
 export interface IListBox {
-	list?: IListItem[] | undefined;
+	children?: IListItem[] | undefined;
 }
 
-const ListBox: React.FC<IListBox> = ({ list }) => {
+const ListBox: React.FC<IListBox> = ({ children }) => {
 	return (
 		<ListSection>
-			{list.map((el) => (
+			{children.map((el) => (
 				<ListItem>{el.name}</ListItem>
 			))}
 		</ListSection>

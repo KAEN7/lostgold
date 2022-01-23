@@ -3,6 +3,7 @@
 import { FormEvent, useState } from "react";
 import styled from "styled-components";
 import { flexCenterDir, color } from "../../styles/theme";
+import ListBox from "./ListBox";
 
 const CheckSection = styled.div`
 	${flexCenterDir}
@@ -68,7 +69,7 @@ const CheckBox: React.FC<ICheckBox> = ({ children }) => {
 					<span onClick={() => setTitle(!title)}>{titleValue}</span>
 				) : (
 					// todo 모달 처리
-					titleList.map((data, idx) => <span key={idx}>{data.name}</span>)
+					<ListBox>{titleList}</ListBox>
 				)}
 			</CheckTitle>
 			<CheckItem
