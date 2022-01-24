@@ -61,6 +61,11 @@ const CheckBox: React.FC<ICheckBox> = ({ children }) => {
 		e.preventDefault();
 	};
 
+	const onTitlehandler = (value: string) => {
+		setTitleValue(value);
+		setTitle(!title);
+	};
+
 	// todo Title을 누르면 보기 리스트가 나와야됨
 	return (
 		<CheckSection>
@@ -69,7 +74,7 @@ const CheckBox: React.FC<ICheckBox> = ({ children }) => {
 					<span onClick={() => setTitle(!title)}>{titleValue}</span>
 				) : (
 					// todo 모달 처리
-					<ListBox>{titleList}</ListBox>
+					<ListBox onTitlehandler={onTitlehandler}>{titleList}</ListBox>
 				)}
 			</CheckTitle>
 			<CheckItem

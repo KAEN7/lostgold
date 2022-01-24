@@ -78,4 +78,33 @@ export const fadeIn = css`
 	}
 `;
 
+// 스크롤 디자인
+export const scrollBar = css`
+	padding: 0px 13px 0px 13px;
+	overflow-y: scroll;
+	height: 200px;
+	box-sizing: border-box;
+	color: white;
+	background-color: rgba(0, 0, 0, 0.8);
+	margin-right: 50px;
+
+	/* 스크롤바 설정*/
+	&::-webkit-scrollbar {
+		width: 6px;
+	}
+
+	/* 스크롤바 막대 설정*/
+	&::-webkit-scrollbar-thumb {
+		height: 17%;
+		background-color: rgba(255, 255, 255, 1);
+		/* 스크롤바 둥글게 설정    */
+		border-radius: 10px;
+	}
+
+	/* 스크롤바 뒷 배경 설정*/
+	&::-webkit-scrollbar-track {
+		background-color: rgba(0, 0, 0, 0);
+	}
+`;
+
 export default theme;

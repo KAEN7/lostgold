@@ -1,11 +1,12 @@
 // 호버시 나타날 리스트
 
 import styled from "styled-components";
-import { flexCenterDir, color } from "../../styles/theme";
+import { scrollBar, color } from "../../styles/theme";
 
 const ListSection = styled.ul`
-	${flexCenterDir}
-
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
 	text-align: center;
 	position: absolute;
 	width: fit-content;
@@ -18,21 +19,7 @@ const ListSection = styled.ul`
 	color: ${color.white};
 	font-size: 14px;
 
-	overflow-y: auto;
-	.scroll-test::-webkit-scrollbar {
-		width: 2px;
-	}
-	.scroll-test::-webkit-scrollbar-track {
-		background-color: transparent;
-	}
-	.scroll-test::-webkit-scrollbar-thumb {
-		border-radius: 3px;
-		background-color: gray;
-	}
-	.scroll-test::-webkit-scrollbar-button {
-		width: 0;
-		height: 0;
-	}
+	${scrollBar}
 `;
 
 const ListItem = styled.li`
@@ -47,14 +34,15 @@ interface IListItem {
 }
 
 export interface IListBox {
-	children?: IListItem[] | undefined;
+	children?: IListItem[];
+	onTitlehandler?: any;
 }
 
-const ListBox: React.FC<IListBox> = ({ children }) => {
+const ListBox: React.FC<IListBox> = ({ children, onTitlehandler }) => {
 	return (
 		<ListSection>
 			{children.map((el) => (
-				<ListItem>{el.name}</ListItem>
+				<ListItem onClick={() => onTitlehandler(el.name)}>{el.name}</ListItem>
 			))}
 		</ListSection>
 	);
