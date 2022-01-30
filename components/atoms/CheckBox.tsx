@@ -69,7 +69,7 @@ const CheckBox: React.FC<ICheckBox> = ({ children }) => {
 	// todo Title을 누르면 보기 리스트가 나와야됨
 	return (
 		<CheckSection>
-			<CheckTitle onSubmit={(e) => onSubmitHandler(e)}>
+			<CheckTitle onSubmit={(e: any) => onSubmitHandler(e)}>
 				{!title ? (
 					<span onClick={() => setTitle(!title)}>{titleValue}</span>
 				) : (

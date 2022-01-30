@@ -2,7 +2,11 @@
 
 import styled from "styled-components";
 
-const ArrowBox = styled.div`
+interface IArrowBox {
+	direction?: boolean;
+}
+
+const ArrowBox = styled.div<IArrowBox>`
 	text-align: center;
 	position: absolute;
 	width: fit-content;
