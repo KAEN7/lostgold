@@ -12,7 +12,7 @@ const Template: Story<IListBox> = (args) => <ListBox {...args} />;
 
 export const Basic = Template.bind({});
 Basic.args = {
-	list: [
+	children: [
 		{ name: "오레하 노말", gold: 1100 },
 		{ name: "오레하 하드", gold: 1300 },
 		{ name: "아르고스", gold: 1600 },

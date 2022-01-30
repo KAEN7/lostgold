@@ -1,21 +1,25 @@
 // 호버시 나타날 리스트
 
 import styled from "styled-components";
-import { flexCenterDir, color } from "../../styles/theme";
+import { scrollBar, color } from "../../styles/theme";
 
 const ListSection = styled.ul`
-	${flexCenterDir}
-
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
 	text-align: center;
 	position: absolute;
 	width: fit-content;
+	height: 10rem;
 	padding: 8px;
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
 	border-radius: 8px;
 	background: #333;
-	color: #fff;
+	color: ${color.white};
 	font-size: 14px;
+
+	${scrollBar}
 `;
 
 const ListItem = styled.li`
@@ -30,14 +34,15 @@ interface IListItem {
 }
 
 export interface IListBox {
-	list?: IListItem[] | undefined;
+	children?: IListItem[];
+	onTitlehandler?: any;
 }
 
-const ListBox: React.FC<IListBox> = ({ list }) => {
+const ListBox: React.FC<IListBox> = ({ children, onTitlehandler }) => {
 	return (
 		<ListSection>
-			{list.map((el) => (
-				<ListItem>{el.name}</ListItem>
+			{children.map((el) => (
+				<ListItem onClick={() => onTitlehandler(el.name)}>{el.name}</ListItem>
 			))}
 		</ListSection>
 	);
