@@ -21,7 +21,7 @@ const CheckTitle = styled.form`
 `;
 
 interface ICheckItem {
-	color?: boolean | undefined;
+	color?: any;
 }
 
 const CheckItem = styled.div<ICheckItem>`
