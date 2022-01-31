@@ -27,9 +27,9 @@ interface ICheckItem {
 const CheckItem = styled.div<ICheckItem>`
 	width: 2rem;
 	height: 2rem;
-	border: 2px solid ${(props) => (props.color ? color.point : color.gray)};
+	border: 2px solid ${(props: any) => (props.color ? color.point : color.gray)};
 	border-radius: 0.5rem;
-	background: ${(props) => (props.color ? color.point : "none")};
+	background: ${(props: any) => (props.color ? color.point : "none")};
 `;
 
 export interface ICheckBox {
