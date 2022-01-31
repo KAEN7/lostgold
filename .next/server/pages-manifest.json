@@ -1,6 +1,10 @@
 {
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
+  "/api/hello": "pages/api/hello.js",
+  "/gold": "pages/gold.html",
+  "/home": "pages/home.html",
+  "/": "pages/index.html",
   "/_error": "pages/_error.js",
-  "/gold": "pages/gold.js"
+  "/404": "pages/404.html"
 }
