@@ -1,23 +1,23 @@
 // 호버시 나타날 리스트
 
 import styled from "styled-components";
-import { color } from "../../styles/theme";
+import { flexCenterDir, color } from "../../styles/theme";
 
 const ResultSection = styled.ul`
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	text-align: center;
+	${flexCenterDir}
+
 	width: 30rem;
 	height: fit-content;
-	padding: 8px;
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
 	border-radius: 8px;
 	background: ${color.white};
-	background: ${color.gray};
 	color: ${color.black};
 	font-size: 14px;
+`;
+
+const ResultList = styled.div`
+	display: flex;
 `;
 
 export interface IResultBox {
@@ -25,7 +25,21 @@ export interface IResultBox {
 }
 
 const ResultBox: React.FC<IResultBox> = ({ children }) => {
-	return <ResultSection>{children}</ResultSection>;
+	const tempAPIArr = [{ name: "닉네임", result: 14000 }];
+
+	return (
+		<ResultSection>
+			{tempAPIArr.map((el, idx) => (
+				<ResultList key={idx}>
+					{el.name}
+					<span>주간 골드:{el.result}</span>
+				</ResultList>
+			))}
+			<>
+				총 주간 골드<span>{}</span>
+			</>
+		</ResultSection>
+	);
 };
 
 export default ResultBox;
