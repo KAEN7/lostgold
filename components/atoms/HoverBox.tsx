@@ -40,7 +40,7 @@ const ArrowBox = styled.div<IArrowBox>`
 
 export interface IHoverBox {
 	job?: string;
-	direction?: boolean; // true면 화살표가 아래
+	direction?: any; // true면 화살표가 아래
 }
 
 const HoverBox: React.FC<IHoverBox> = ({ job, direction }) => {
