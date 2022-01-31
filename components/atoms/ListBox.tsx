@@ -42,8 +42,10 @@ export interface IListBox {
 const ListBox: React.FC<IListBox> = ({ children, onTitlehandler }) => {
 	return (
 		<ListSection>
-			{children.map((el: any) => (
-				<ListItem onClick={() => onTitlehandler(el.name)}>{el.name}</ListItem>
+			{children.map((el: any, idx: number) => (
+				<ListItem onClick={() => onTitlehandler(el.name)} key={`list${idx}`}>
+					{el.name}
+				</ListItem>
 			))}
 		</ListSection>
 	);
