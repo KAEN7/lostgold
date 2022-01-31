@@ -3,7 +3,7 @@
 import styled from "styled-components";
 
 interface IArrowBox {
-	direction?: boolean;
+	direction?: any;
 }
 
 const ArrowBox = styled.div<IArrowBox>`
