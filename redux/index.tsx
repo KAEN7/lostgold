@@ -21,7 +21,7 @@ const RESET_REDUCER = "root/RESET_REDUCER";
 
 export const resetReducer = createAction(RESET_REDUCER);
 
-const rootReducer = (state, action) => {
+const rootReducer = (state: any, action: any) => {
 	if (action.type === "root/RESET_REDUCER") {
 		return appReducer(undefined, action);
 	}
