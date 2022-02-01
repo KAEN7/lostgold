@@ -2,8 +2,10 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { flexCenter, color } from "../../styles/theme";
+import { user } from "../../redux/modules/user";
 import CheckBox from "../atoms/CheckBox";
 import HoverBox from "../atoms/HoverBox";
 
@@ -17,6 +19,13 @@ const ItemRow = styled.div`
 	box-shadow: inset -1rem -1rem 1.3rem rgba(0, 0, 0, 0.11);
 	color: ${color.black};
 	margin-bottom: 1.5rem;
+
+	.plus {
+		font-size: 2rem;
+		padding: 1rem;
+		font-weight: bold;
+		cursor: pointer;
+	}
 `;
 
 const ItemHeader = styled.div`
@@ -44,6 +53,13 @@ export interface ICheckBox {
 
 const TableRow: React.FC<ICheckBox> = ({ name, job }) => {
 	const [hover, setHover] = useState(false);
+	const users = useSelector((state) => state.user.userData);
+	const dispatch = useDispatch();
+
+	let data = 12;
+	dispatch(user(data));
+
+	// 새로 생성시 user list에 추가
 
 	return (
 		<ItemRow>
@@ -59,9 +75,12 @@ const TableRow: React.FC<ICheckBox> = ({ name, job }) => {
 				</span>
 			</ItemHeader>
 
+			{users.list}
 			<CheckBox />
 			<CheckBox />
 			<CheckBox />
+
+			<span className="plus">+</span>
 		</ItemRow>
 	);
 };

@@ -1,3 +1,7 @@
+/* Setting 페이지
+ * 현재 명파 가격 캐릭터당 어떤 레이드 인지 지정
+ */
+
 import { useState } from "react";
 import styled from "styled-components";
 import { flexCenter, color } from "../styles/theme";
