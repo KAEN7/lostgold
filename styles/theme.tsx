@@ -58,6 +58,7 @@ export const pageSetting = css`
 	}
 `;
 
+// 스크롤 숨김
 export const overflowY = css`
 	overflow-y: auto;
 	::-webkit-scrollbar {

@@ -16,6 +16,7 @@ const ItemRow = styled.div`
 	border-radius: 1.1rem;
 	box-shadow: inset -1rem -1rem 1.3rem rgba(0, 0, 0, 0.11);
 	color: ${color.black};
+	margin-bottom: 1.5rem;
 `;
 
 const ItemHeader = styled.div`

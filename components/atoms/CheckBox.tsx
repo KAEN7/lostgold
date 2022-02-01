@@ -73,7 +73,6 @@ const CheckBox: React.FC<ICheckBox> = ({ children }) => {
 				{!title ? (
 					<span onClick={() => setTitle(!title)}>{titleValue}</span>
 				) : (
-					// todo 모달 처리
 					<ListBox onTitlehandler={onTitlehandler}>{titleList}</ListBox>
 				)}
 			</CheckTitle>
