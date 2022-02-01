@@ -7,9 +7,9 @@ interface IArrowBox {
 }
 
 const ArrowBox = styled.div<IArrowBox>`
-	text-align: center;
 	position: absolute;
 	width: fit-content;
+	min-width: 6rem;
 	padding: 8px;
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;

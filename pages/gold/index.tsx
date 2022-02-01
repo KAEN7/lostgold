@@ -29,23 +29,23 @@ const TableBox = styled.ul`
 
 function index() {
 	const tempAPIArr = [
-		{ name: "오레하 노말", gold: 1100 },
-		{ name: "오레하 하드", gold: 1300 },
-		{ name: "아르고스", gold: 1600 },
-		{ name: "발탄 노말", gold: 1300 },
-		{ name: "발탄 하드", gold: 2100 },
-		{ name: "비아 노말", gold: 1800 },
-		{ name: "비아 하드", gold: 2800 },
-		{ name: "쿠크세이튼", gold: 3100 },
-		{ name: "아브 노말", gold: 4500 },
-		{ name: "아브 하드", gold: 6000 },
+		{ name: "닉네임", job: "창술사" },
+		{ name: "닉네임", job: "창술사" },
+		{ name: "닉네임", job: "배틀마스터" },
+		{ name: "닉네임", job: "창술사" },
+		{ name: "닉네임", job: "도화가" },
+		{ name: "닉네임", job: "창술사" },
+		{ name: "닉네임", job: "창술사" },
+		{ name: "닉네임", job: "창술사" },
+		{ name: "닉네임", job: "창술사" },
+		{ name: "닉네임", job: "창술사" },
 	];
 
 	return (
 		<GoldSection>
 			<TableBox>
 				{tempAPIArr.map((el: any, idx: number) => (
-					<TableRow name={el.name} job="창술사" key={`el${idx}`}></TableRow>
+					<TableRow name={el.name} job={el.job} key={`el${idx}`}></TableRow>
 				))}
 			</TableBox>
 

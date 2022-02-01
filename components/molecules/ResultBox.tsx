@@ -6,7 +6,7 @@ import { flexCenterDir, color } from "../../styles/theme";
 const ResultSection = styled.ul`
 	${flexCenterDir}
 
-	width: 30rem;
+	width: 25rem;
 	height: fit-content;
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
@@ -14,6 +14,8 @@ const ResultSection = styled.ul`
 	background: ${color.white};
 	color: ${color.black};
 	font-size: 14px;
+	box-sizing: border-box;
+	padding: 1rem;
 `;
 
 const ResultList = styled.div`
