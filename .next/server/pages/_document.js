@@ -71,10 +71,10 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /*!************************************************!*\
   !*** ./node_modules/next/dist/lib/is-error.js ***!
   \************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", ({\n    value: true\n}));\nexports[\"default\"] = isError;\nfunction isError(err) {\n    return typeof err === 'object' && err !== null && 'name' in err && 'message' in err;\n}\n\n//# sourceMappingURL=is-error.js.map//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9ub2RlX21vZHVsZXMvbmV4dC9kaXN0L2xpYi9pcy1lcnJvci5qcy5qcyIsIm1hcHBpbmdzIjoiQUFBYTtBQUNiLDhDQUE2QztBQUM3QztBQUNBLENBQUMsRUFBQztBQUNGLGtCQUFlO0FBQ2Y7QUFDQTtBQUNBOztBQUVBIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vbG9zdGdvbGQvLi9ub2RlX21vZHVsZXMvbmV4dC9kaXN0L2xpYi9pcy1lcnJvci5qcz8xNzhlIl0sInNvdXJjZXNDb250ZW50IjpbIlwidXNlIHN0cmljdFwiO1xuT2JqZWN0LmRlZmluZVByb3BlcnR5KGV4cG9ydHMsIFwiX19lc01vZHVsZVwiLCB7XG4gICAgdmFsdWU6IHRydWVcbn0pO1xuZXhwb3J0cy5kZWZhdWx0ID0gaXNFcnJvcjtcbmZ1bmN0aW9uIGlzRXJyb3IoZXJyKSB7XG4gICAgcmV0dXJuIHR5cGVvZiBlcnIgPT09ICdvYmplY3QnICYmIGVyciAhPT0gbnVsbCAmJiAnbmFtZScgaW4gZXJyICYmICdtZXNzYWdlJyBpbiBlcnI7XG59XG5cbi8vIyBzb3VyY2VNYXBwaW5nVVJMPWlzLWVycm9yLmpzLm1hcCJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./node_modules/next/dist/lib/is-error.js\n");
+eval("\nObject.defineProperty(exports, \"__esModule\", ({\n    value: true\n}));\nexports[\"default\"] = isError;\nexports.getProperError = getProperError;\nvar _isPlainObject = __webpack_require__(/*! ../shared/lib/is-plain-object */ \"../shared/lib/is-plain-object\");\nfunction isError(err) {\n    return typeof err === 'object' && err !== null && 'name' in err && 'message' in err;\n}\nfunction getProperError(err) {\n    if (isError(err)) {\n        return err;\n    }\n    if (true) {\n        // provide better error for case where `throw undefined`\n        // is called in development\n        if (typeof err === 'undefined') {\n            return new Error('An undefined error was thrown, ' + 'see here for more info: https://nextjs.org/docs/messages/threw-undefined');\n        }\n        if (err === null) {\n            return new Error('A null error was thrown, ' + 'see here for more info: https://nextjs.org/docs/messages/threw-undefined');\n        }\n    }\n    return new Error((0, _isPlainObject).isPlainObject(err) ? JSON.stringify(err) : err + '');\n}\n\n//# sourceMappingURL=is-error.js.map//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9ub2RlX21vZHVsZXMvbmV4dC9kaXN0L2xpYi9pcy1lcnJvci5qcy5qcyIsIm1hcHBpbmdzIjoiQUFBYTtBQUNiLDhDQUE2QztBQUM3QztBQUNBLENBQUMsRUFBQztBQUNGLGtCQUFlO0FBQ2Ysc0JBQXNCO0FBQ3RCLHFCQUFxQixtQkFBTyxDQUFDLG9FQUErQjtBQUM1RDtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBLFFBQVEsSUFBc0M7QUFDOUM7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTs7QUFFQSIsInNvdXJjZXMiOlsid2VicGFjazovL2xvc3Rnb2xkLy4vbm9kZV9tb2R1bGVzL25leHQvZGlzdC9saWIvaXMtZXJyb3IuanM/MTc4ZSJdLCJzb3VyY2VzQ29udGVudCI6WyJcInVzZSBzdHJpY3RcIjtcbk9iamVjdC5kZWZpbmVQcm9wZXJ0eShleHBvcnRzLCBcIl9fZXNNb2R1bGVcIiwge1xuICAgIHZhbHVlOiB0cnVlXG59KTtcbmV4cG9ydHMuZGVmYXVsdCA9IGlzRXJyb3I7XG5leHBvcnRzLmdldFByb3BlckVycm9yID0gZ2V0UHJvcGVyRXJyb3I7XG52YXIgX2lzUGxhaW5PYmplY3QgPSByZXF1aXJlKFwiLi4vc2hhcmVkL2xpYi9pcy1wbGFpbi1vYmplY3RcIik7XG5mdW5jdGlvbiBpc0Vycm9yKGVycikge1xuICAgIHJldHVybiB0eXBlb2YgZXJyID09PSAnb2JqZWN0JyAmJiBlcnIgIT09IG51bGwgJiYgJ25hbWUnIGluIGVyciAmJiAnbWVzc2FnZScgaW4gZXJyO1xufVxuZnVuY3Rpb24gZ2V0UHJvcGVyRXJyb3IoZXJyKSB7XG4gICAgaWYgKGlzRXJyb3IoZXJyKSkge1xuICAgICAgICByZXR1cm4gZXJyO1xuICAgIH1cbiAgICBpZiAocHJvY2Vzcy5lbnYuTk9ERV9FTlYgPT09ICdkZXZlbG9wbWVudCcpIHtcbiAgICAgICAgLy8gcHJvdmlkZSBiZXR0ZXIgZXJyb3IgZm9yIGNhc2Ugd2hlcmUgYHRocm93IHVuZGVmaW5lZGBcbiAgICAgICAgLy8gaXMgY2FsbGVkIGluIGRldmVsb3BtZW50XG4gICAgICAgIGlmICh0eXBlb2YgZXJyID09PSAndW5kZWZpbmVkJykge1xuICAgICAgICAgICAgcmV0dXJuIG5ldyBFcnJvcignQW4gdW5kZWZpbmVkIGVycm9yIHdhcyB0aHJvd24sICcgKyAnc2VlIGhlcmUgZm9yIG1vcmUgaW5mbzogaHR0cHM6Ly9uZXh0anMub3JnL2RvY3MvbWVzc2FnZXMvdGhyZXctdW5kZWZpbmVkJyk7XG4gICAgICAgIH1cbiAgICAgICAgaWYgKGVyciA9PT0gbnVsbCkge1xuICAgICAgICAgICAgcmV0dXJuIG5ldyBFcnJvcignQSBudWxsIGVycm9yIHdhcyB0aHJvd24sICcgKyAnc2VlIGhlcmUgZm9yIG1vcmUgaW5mbzogaHR0cHM6Ly9uZXh0anMub3JnL2RvY3MvbWVzc2FnZXMvdGhyZXctdW5kZWZpbmVkJyk7XG4gICAgICAgIH1cbiAgICB9XG4gICAgcmV0dXJuIG5ldyBFcnJvcigoMCwgX2lzUGxhaW5PYmplY3QpLmlzUGxhaW5PYmplY3QoZXJyKSA/IEpTT04uc3RyaW5naWZ5KGVycikgOiBlcnIgKyAnJyk7XG59XG5cbi8vIyBzb3VyY2VNYXBwaW5nVVJMPWlzLWVycm9yLmpzLm1hcCJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./node_modules/next/dist/lib/is-error.js\n");
 
 /***/ }),
 
@@ -151,6 +151,17 @@ module.exports = require("next/dist/shared/lib/constants.js");
 
 "use strict";
 module.exports = require("next/dist/shared/lib/head-manager-context.js");
+
+/***/ }),
+
+/***/ "../shared/lib/is-plain-object":
+/*!**********************************************************!*\
+  !*** external "next/dist/shared/lib/is-plain-object.js" ***!
+  \**********************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("next/dist/shared/lib/is-plain-object.js");
 
 /***/ }),
 

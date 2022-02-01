@@ -1,11 +1,12 @@
 // Gold 메인 화면
 
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import ResultBox from "../../components/molecules/ResultBox";
 import TableRow from "../../components/molecules/TableRow";
 import { flexCenterDir, color, scrollBar } from "../../styles/theme";
 
-const GoldSection = styled.header`
+const GoldSection = styled.section`
 	${scrollBar}
 
 	margin-top: 6vh;
@@ -22,29 +23,17 @@ const TableBox = styled.ul`
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
-
 	width: 100%;
 	height: fit-content;
 `;
 
 function index() {
-	const tempAPIArr = [
-		{ name: "닉네임", job: "창술사" },
-		{ name: "닉네임", job: "창술사" },
-		{ name: "닉네임", job: "배틀마스터" },
-		{ name: "닉네임", job: "창술사" },
-		{ name: "닉네임", job: "도화가" },
-		{ name: "닉네임", job: "창술사" },
-		{ name: "닉네임", job: "창술사" },
-		{ name: "닉네임", job: "창술사" },
-		{ name: "닉네임", job: "창술사" },
-		{ name: "닉네임", job: "창술사" },
-	];
+	const user = useSelector((state) => state.user.userData);
 
 	return (
 		<GoldSection>
 			<TableBox>
-				{tempAPIArr.map((el: any, idx: number) => (
+				{user.map((el: any, idx: number) => (
 					<TableRow name={el.name} job={el.job} key={`el${idx}`}></TableRow>
 				))}
 			</TableBox>

@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import styled, { ThemeProvider } from "styled-components";
 import Header from "../components/Header";
+import { wrapper } from "../redux";
 
 const BodySection = styled.body`
 	display: flex;
@@ -20,4 +21,4 @@ function MyApp({ Component, pageProps }: AppProps) {
 	);
 }
 
-export default MyApp;
+export default wrapper.withRedux(MyApp);
