@@ -1126,9 +1126,6 @@
     "@babel/helper-validator-identifier" "^7.16.7"
     "to-fast-properties" "^2.0.0"
 
-<<<<<<< HEAD
-"@babel/types@7.15.0":
-=======
 "@babel/types@^7.2.0":
   "integrity" "sha512-OBvfqnllOIdX4ojTHpwZbpvz4j3EWyjkZEdmjH0/cgsd6QOdSgU8rLSk6ard/pcW7rlmjdVSX/AWOaORR1uNOQ=="
   "resolved" "https://registry.npmjs.org/@babel/types/-/types-7.15.0.tgz"
@@ -1154,7 +1151,6 @@
     "to-fast-properties" "^2.0.0"
 
 "@babel/types@^7.4.4":
->>>>>>> dev
   "integrity" "sha512-OBvfqnllOIdX4ojTHpwZbpvz4j3EWyjkZEdmjH0/cgsd6QOdSgU8rLSk6ard/pcW7rlmjdVSX/AWOaORR1uNOQ=="
   "resolved" "https://registry.npmjs.org/@babel/types/-/types-7.15.0.tgz"
   "version" "7.15.0"
@@ -1602,17 +1598,10 @@
   dependencies:
     "glob" "7.1.7"
 
-<<<<<<< HEAD
-"@next/react-refresh-utils@12.0.8-canary.19":
-  "integrity" "sha512-Sd0tXtBTzvCylkAN4EF9EdZmxW40nYnXpw1YidTlOwfWuh3rXUGg5EXZvQQwPjK7zkbU9iXyHn4cBHk3Adclcg=="
-  "resolved" "https://registry.npmjs.org/@next/react-refresh-utils/-/react-refresh-utils-12.0.8-canary.19.tgz"
-  "version" "12.0.8-canary.19"
-=======
 "@next/swc-win32-x64-msvc@12.0.10":
   "integrity" "sha512-oUIWRKd24jFLRWUYO1CZmML5+32BcpVfqhimGaaZIXcOkfQW+iqiAzdqsv688zaGtyKGeB9ZtiK3NDf+Q0v+Vw=="
   "resolved" "https://registry.npmjs.org/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-12.0.10.tgz"
   "version" "12.0.10"
->>>>>>> dev
 
 "@nodelib/fs.scandir@2.1.5":
   "integrity" "sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g=="
