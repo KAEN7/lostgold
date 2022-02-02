@@ -30,10 +30,20 @@
       "static/chunks/main.js",
       "static/chunks/pages/gold.js"
     ],
+<<<<<<< HEAD
+    "/setting": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/setting.js"
+=======
     "/home": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/home.js"
+<<<<<<< HEAD
+=======
+>>>>>>> main
+>>>>>>> dev
     ]
   },
   "ampFirstPages": []
