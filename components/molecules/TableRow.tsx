@@ -57,7 +57,7 @@ const TableRow: React.FC<ICheckBox> = ({ name, job }) => {
 	const dispatch = useDispatch();
 
 	let data = 12;
-	dispatch(user(data));
+	// dispatch(user(data));
 
 	// 새로 생성시 user list에 추가
 
