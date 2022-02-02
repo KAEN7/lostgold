@@ -53,7 +53,7 @@ export interface ICheckBox {
 
 const TableRow: React.FC<ICheckBox> = ({ name, job }) => {
 	const [hover, setHover] = useState(false);
-	const users = useSelector((state) => state.user.userData);
+	const users = useSelector((state: any) => state.user.userData); // state: RootState
 	const dispatch = useDispatch();
 
 	let data = 12;
