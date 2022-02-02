@@ -28,7 +28,7 @@ const TableBox = styled.ul`
 `;
 
 function index() {
-	const user = useSelector((state) => state.user.userData);
+	const user = useSelector((state: any) => state.user.userData); // state: RootState
 
 	return (
 		<GoldSection>
