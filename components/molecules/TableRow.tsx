@@ -12,7 +12,7 @@ import HoverBox from "../atoms/HoverBox";
 const ItemRow = styled.div`
 	display: flex;
 	align-items: center;
-	width: 50%;
+	width: fit-content;
 	height: 5rem;
 	background: ${color.white};
 	border-radius: 1.1rem;
