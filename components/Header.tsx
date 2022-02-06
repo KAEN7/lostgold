@@ -43,7 +43,7 @@ function Header() {
 	return (
 		<HeaderSection>
 			{list.map((el, index) => (
-				<Link href={el.toLowerCase()} passHref>
+				<Link href={el === "Home" ? "/" : el.toLowerCase()} passHref>
 					<HeaderBtn
 						key={`header${index}`}
 						color={isBoxSelect[index]}
