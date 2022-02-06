@@ -19,28 +19,38 @@ const ResultSection = styled.ul`
 	padding: 1rem;
 `;
 
-const ResultList = styled.div`
+const ResultList = styled.tr`
 	display: flex;
 `;
 
 export interface IResultBox {
-	children?: Object[];
+	// user?: Array<object>;
+	user?: any;
 }
 
-const ResultBox: React.FC<IResultBox> = ({ children }) => {
-	const tempAPIArr = [{ name: "닉네임", result: 14000 }];
-
+const ResultBox: React.FC<IResultBox> = ({ user }) => {
+	const sum = user.reduce((a: any, c: any) => c.list.gold + a);
 	return (
 		<ResultSection>
-			{tempAPIArr.map((el, idx) => (
-				<ResultList key={idx}>
-					{el.name}
-					<span>주간 골드:{el.result}</span>
-				</ResultList>
-			))}
-			<>
-				총 주간 골드<span>{}</span>
-			</>
+			<table>
+				<thead>
+					<tr>
+						<th>닉네임</th>
+						<th>주간 골드</th>
+					</tr>
+				</thead>
+				<tbody>
+					{user.map((el: any, idx: any) => (
+						<ResultList key={`result${idx}`}>
+							<td>{el.name}</td>
+							<td>주간 골드:{}</td>
+						</ResultList>
+					))}
+					<tr>
+						총 주간 골드<span>{}</span>
+					</tr>
+				</tbody>
+			</table>
 		</ResultSection>
 	);
 };

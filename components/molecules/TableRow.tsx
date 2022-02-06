@@ -49,17 +49,18 @@ export interface ICheckBox {
 	children?: string;
 	name?: string;
 	job?: string;
+	list?: Array<any>;
 }
 
-const TableRow: React.FC<ICheckBox> = ({ name, job }) => {
+const TableRow: React.FC<ICheckBox> = ({ name, job, list }) => {
 	const [hover, setHover] = useState(false);
-	const users = useSelector((state: any) => state.user.userData); // state: RootState
 	const dispatch = useDispatch();
 
 	let data = 12;
 	// dispatch(user(data));
 
 	// 새로 생성시 user list에 추가
+	console.log(list);
 
 	return (
 		<ItemRow>
@@ -75,10 +76,9 @@ const TableRow: React.FC<ICheckBox> = ({ name, job }) => {
 				</span>
 			</ItemHeader>
 
-			{users.list}
-			<CheckBox />
-			<CheckBox />
-			<CheckBox />
+			{list?.map((el) => (
+				<CheckBox data={el} />
+			))}
 
 			<span className="plus">+</span>
 		</ItemRow>

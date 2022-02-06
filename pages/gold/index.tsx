@@ -29,16 +29,21 @@ const TableBox = styled.ul`
 
 function index() {
 	const user = useSelector((state: any) => state.user.userData); // state: RootState
-
+	console.log(user, "user reducer");
 	return (
 		<GoldSection>
 			<TableBox>
 				{user.map((el: any, idx: number) => (
-					<TableRow name={el.name} job={el.job} key={`el${idx}`}></TableRow>
+					<TableRow
+						name={el.name}
+						job={el.job}
+						key={`el${idx}`}
+						list={el.list}
+					></TableRow>
 				))}
 			</TableBox>
 
-			<ResultBox />
+			<ResultBox user={user} />
 		</GoldSection>
 	);
 }

@@ -33,10 +33,10 @@ const CheckItem = styled.div<ICheckItem>`
 `;
 
 export interface ICheckBox {
-	children?: string;
+	data?: any;
 }
 
-const CheckBox: React.FC<ICheckBox> = ({ children }) => {
+const CheckBox: React.FC<ICheckBox> = ({ data }) => {
 	const [checked, setChecked] = useState(false); // 체크박스 유무
 	const [title, setTitle] = useState(false); // title 상태값
 	const [titleValue, setTitleValue] = useState("입력"); // title value 상태값
@@ -65,6 +65,8 @@ const CheckBox: React.FC<ICheckBox> = ({ children }) => {
 		setTitleValue(value);
 		setTitle(!title);
 	};
+
+	titleValue === "입력" && setTitleValue(data.name);
 
 	// todo Title을 누르면 보기 리스트가 나와야됨
 	return (
