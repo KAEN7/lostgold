@@ -11,6 +11,4 @@ export default {
 const Template: Story<IResultBox> = (args) => <ResultBox {...args} />;
 
 export const Basic = Template.bind({});
-Basic.args = {
-	children: [{ name: "닉네임", result: 14000 }],
-};
+Basic.args = {};
