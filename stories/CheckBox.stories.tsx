@@ -11,4 +11,4 @@ export default {
 const Template: Story<ICheckBox> = (args) => <CheckBox {...args} />;
 
 export const Basic = Template.bind({});
-Basic.args = { children: "Title!" };
+Basic.args = {};
