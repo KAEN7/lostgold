@@ -29,7 +29,8 @@ export interface IResultBox {
 }
 
 const ResultBox: React.FC<IResultBox> = ({ user }) => {
-	const sum = user.reduce((a: any, c: any) => c.list.gold + a);
+	// 주간 골드 배열
+	// 주간 골드 배열 총합
 	return (
 		<ResultSection>
 			<table>
@@ -40,10 +41,12 @@ const ResultBox: React.FC<IResultBox> = ({ user }) => {
 					</tr>
 				</thead>
 				<tbody>
-					{user.map((el: any, idx: any) => (
+					{user.map((el: any, idx: number) => (
 						<ResultList key={`result${idx}`}>
 							<td>{el.name}</td>
-							<td>주간 골드:{}</td>
+							<td>
+								주간 골드:{el.list.reduce((a: any, c: any) => c && c.gold + a)}
+							</td>
 						</ResultList>
 					))}
 					<tr>
