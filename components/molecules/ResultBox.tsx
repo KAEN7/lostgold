@@ -19,8 +19,20 @@ const ResultSection = styled.ul`
 	padding: 1rem;
 `;
 
-const ResultList = styled.tr`
+const ResultList = styled.div`
 	display: flex;
+	justify-content: center;
+	width: 100%;
+`;
+
+const HeadItem = styled.span`
+	width: 40%;
+	text-align: center;
+`;
+
+const BodyItem = styled.span`
+	width: 60%;
+	text-align: center;
 `;
 
 export interface IResultBox {
@@ -30,30 +42,34 @@ export interface IResultBox {
 
 const ResultBox: React.FC<IResultBox> = ({ user }) => {
 	// 주간 골드 배열
+	const week = user.map((el: any) => {
+		let sum = 0;
+		const listArr = el.list;
+		listArr.forEach((data: any) => data.boolean && (sum += data.gold));
+
+		return sum;
+	});
+
 	// 주간 골드 배열 총합
+	const month = week.reduce((a: number, c: number) => a + c);
+
 	return (
 		<ResultSection>
-			<table>
-				<thead>
-					<tr>
-						<th>닉네임</th>
-						<th>주간 골드</th>
-					</tr>
-				</thead>
-				<tbody>
-					{user.map((el: any, idx: number) => (
-						<ResultList key={`result${idx}`}>
-							<td>{el.name}</td>
-							<td>
-								주간 골드:{el.list.reduce((a: any, c: any) => c && c.gold + a)}
-							</td>
-						</ResultList>
-					))}
-					<tr>
-						총 주간 골드<span>{}</span>
-					</tr>
-				</tbody>
-			</table>
+			<ResultList>
+				<HeadItem>닉네임</HeadItem>
+				<BodyItem>주간 골드</BodyItem>
+			</ResultList>
+
+			{user.map((el: any, idx: number) => (
+				<ResultList key={`result${idx}`}>
+					<HeadItem>{el.name}</HeadItem>
+					<BodyItem>{week[idx]}G</BodyItem>
+				</ResultList>
+			))}
+
+			<ResultList>
+				총 주간 골드<span>{month}</span>
+			</ResultList>
 		</ResultSection>
 	);
 };
