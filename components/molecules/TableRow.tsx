@@ -62,6 +62,10 @@ const TableRow: React.FC<ICheckBox> = ({ name, job, list }) => {
 	// 새로 생성시 user list에 추가
 	console.log(list);
 
+	const addHandler = () => {
+		console.log("plus");
+	};
+
 	return (
 		<ItemRow>
 			<ItemHeader
@@ -80,7 +84,9 @@ const TableRow: React.FC<ICheckBox> = ({ name, job, list }) => {
 				<CheckBox data={el} />
 			))}
 
-			<span className="plus">+</span>
+			<span className="plus" onClick={() => addHandler()}>
+				+
+			</span>
 		</ItemRow>
 	);
 };
