@@ -4,18 +4,11 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import ResultBox from "../../components/molecules/ResultBox";
 import TableRow from "../../components/molecules/TableRow";
-import { flexCenterDir, color, scrollBar } from "../../styles/theme";
+import { pageDefault, color, scrollBar } from "../../styles/theme";
 
 const GoldSection = styled.section`
 	${scrollBar}
-
-	margin-top: 6vh;
-	height: 94vh;
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: center;
-	background: ${color.black};
+	${pageDefault}
 `;
 
 const TableBox = styled.ul`

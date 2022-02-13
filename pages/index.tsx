@@ -3,20 +3,12 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { useEffect } from "react";
 import styled from "styled-components";
-import { flexCenter, color } from "../styles/theme";
+import { pageDefault } from "../styles/theme";
 import Header from "../components/Header";
 
-const Home: NextPage = () => {
+const Index: NextPage = () => {
 	const HomeSection = styled.header`
-		${flexCenter}
-
-		margin-top: 6vh;
-		height: 94vh;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		align-items: center;
-		background: ${color.black};
+		${pageDefault}
 	`;
 
 	return (
@@ -31,4 +23,4 @@ const Home: NextPage = () => {
 	);
 };
 
-export default Home;
+export default Index;

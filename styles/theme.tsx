@@ -108,4 +108,17 @@ export const scrollBar = css`
 	}
 `;
 
+// 페이지 기본 스타일
+export const pageDefault = css`
+	${flexCenter}
+
+	margin-top: 6vh;
+	height: 94vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	background: ${color.black};
+`;
+
 export default theme;
