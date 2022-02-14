@@ -32,6 +32,7 @@ const SettingRow = styled.div`
 function Setting() {
 	return (
 		<SettingSection>
+			{/* 각 재료들의 판매 가격을 적어주세요 */}
 			<SettingBox>
 				<SettingRow>
 					<>명파</>
@@ -39,6 +40,7 @@ function Setting() {
 				</SettingRow>
 			</SettingBox>
 
+			{/* 해당 캐릭터의 휴게 기준 2수 재료 수급개수를 적어주세요 */}
 			<SettingBox>
 				<SettingRow>
 					<>캐릭명</>
