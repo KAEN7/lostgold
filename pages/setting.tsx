@@ -32,6 +32,7 @@ const SettingRow = styled.div`
 
 function Setting() {
 	return (
+<<<<<<< HEAD
 		<>
 			<Header title="setting" />
 			<SettingSection>
@@ -56,6 +57,31 @@ function Setting() {
 				<button>저장</button>
 			</SettingSection>
 		</>
+=======
+		<SettingSection>
+			{/* 각 재료들의 판매 가격을 적어주세요 */}
+			<SettingBox>
+				<SettingRow>
+					<>명파</>
+					<>20</>
+				</SettingRow>
+			</SettingBox>
+
+			{/* 해당 캐릭터의 휴게 기준 2수 재료 수급개수를 적어주세요 */}
+			<SettingBox>
+				<SettingRow>
+					<>캐릭명</>
+					<>레이드</>
+					<>명파</>
+					<>개수</>
+					<>파괴석</>
+					<>개수</>
+				</SettingRow>
+			</SettingBox>
+
+			<button>저장</button>
+		</SettingSection>
+>>>>>>> da806eaea1e1b0c66f22f9910a30d4650380c9f0
 	);
 }
 
