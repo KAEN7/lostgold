@@ -30,10 +30,15 @@ const HeaderBtn = styled.button<IHeaderBtnType>`
 	color: ${(props) => (props.color ? color.white : color.gray)};
 `;
 
-function Header() {
+interface IHeader {
+	title: string;
+}
+
+function Header({ title }: IHeader) {
 	const list = ["Home", "Gold", "Setting"];
 	const [isBoxSelect, setBoxSelect] = useState([true, false, false]);
 
+	// 포커스 된 문구 true로 변경
 	const focusHandler = useCallback((index: number) => {
 		const newArr = Array(list.length).fill(false);
 		newArr[index] = true;
@@ -46,7 +51,8 @@ function Header() {
 				<Link href={el === "Home" ? "/" : el.toLowerCase()} passHref>
 					<HeaderBtn
 						key={`header${index}`}
-						color={isBoxSelect[index]}
+						// color={isBoxSelect[index]}
+						color={title === el.toLowerCase()}
 						onClick={() => focusHandler(index)}
 					>
 						{el}

@@ -4,6 +4,7 @@
 
 import { useState } from "react";
 import styled from "styled-components";
+import Header from "../components/Header";
 import { flexCenterDir, pageDefault, color } from "../styles/theme";
 
 const SettingSection = styled.header`
@@ -31,27 +32,30 @@ const SettingRow = styled.div`
 
 function Setting() {
 	return (
-		<SettingSection>
-			<SettingBox>
-				<SettingRow>
-					<>명파</>
-					<>20</>
-				</SettingRow>
-			</SettingBox>
+		<>
+			<Header title="setting" />
+			<SettingSection>
+				<SettingBox>
+					<SettingRow>
+						<>명파</>
+						<>20</>
+					</SettingRow>
+				</SettingBox>
 
-			<SettingBox>
-				<SettingRow>
-					<>캐릭명</>
-					<>레이드</>
-					<>명파</>
-					<>개수</>
-					<>파괴석</>
-					<>개수</>
-				</SettingRow>
-			</SettingBox>
+				<SettingBox>
+					<SettingRow>
+						<>캐릭명</>
+						<>레이드</>
+						<>명파</>
+						<>개수</>
+						<>파괴석</>
+						<>개수</>
+					</SettingRow>
+				</SettingBox>
 
-			<button>저장</button>
-		</SettingSection>
+				<button>저장</button>
+			</SettingSection>
+		</>
 	);
 }
 
