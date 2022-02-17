@@ -7,15 +7,11 @@ import Header from "../components/Header";
 import { pageDefault, scrollBar } from "../styles/theme";
 
 const HomeSection = styled.section`
-	${scrollBar}
 	${pageDefault}
+	${scrollBar}
 `;
 
 const Index: NextPage = () => {
-	const HomeSection = styled.header`
-		${pageDefault}
-	`;
-
 	return (
 		<HomeSection>
 			<Header title="home" />

@@ -14,7 +14,10 @@ const initialState = {
 		{
 			name: "닉네임",
 			job: "창술사",
-			list: [{ name: "아르고스", gold: 1300, boolean: true }],
+			list: [
+				{ name: "아르고스", gold: 1300, boolean: true },
+				{ name: "발탄 노말", gold: 1300, boolean: true },
+			],
 		},
 		{
 			name: "test",

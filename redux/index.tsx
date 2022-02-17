@@ -1,17 +1,16 @@
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import { HYDRATE, createWrapper } from "next-redux-wrapper";
+import { persistReducer, PersistConfig } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 import user from "./modules/user";
 
-/*
-? ducks type으로 제작된 reducer들을 하나의 reducer로 만든다.
-? 현재는 todo밖에 없지만, 다른 reducer가 추가될 상황을 가정하여 개방하는 의미도 있다.
-*/
+// combine으로 리덕스를 묶어줌
 const rootReducer = combineReducers({
 	user,
 });
 
-//? 합쳐진 리듀서에 next reddux wrapper hydrate 타입 리듀서를 추가한다.
-//? hydrate는 서버에서 생성된 리덕스 스토어를 클라이언트에서 사용할 수 있도록 전달해 주는 역할을 한다.
+// 합쳐진 리듀서에 next reddux wrapper hydrate 타입 리듀서를 추가한다.
+// hydrate는 여러개 생성되는 스토어를 하나로 묶어줍니다
 const reducer = (state: any, action: any) => {
 	if (action.type === HYDRATE) {
 		const nextState = {
@@ -23,8 +22,17 @@ const reducer = (state: any, action: any) => {
 	return rootReducer(state, action);
 };
 
-//? store type
+// store type 적용
 export type RootState = ReturnType<typeof rootReducer>;
+
+// persist 설정
+const persistConfig = {
+	key: "root",
+	storage,
+};
+
+// persist 적용 리듀서
+export const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 //? middleware 적용을 위한 store enhancer
 //? 리덕스 미들웨어는 액션이 디스패치 되어 리듀서에서 처리하기 전에 사전에 지정된 작업들을 의미한다.
