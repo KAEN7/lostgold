@@ -35,8 +35,8 @@ const persistConfig = {
 export const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 //? middleware 적용을 위한 store enhancer
-//? 리덕스 미들웨어는 액션이 디스패치 되어 리듀서에서 처리하기 전에 사전에 지정된 작업들을 의미한다.
-//? 리덕스 데브툴즈 확장 프로그램을 사용하기 위해 미들웨어에 리덕스 데브툴즈를 사용하도록 하는 코드.
+//? 리덕스 미들웨어는 액션이 디스패치 되어 리듀서에서 처리하기 전에 사전에 지정된 작업들을 의미하며
+//? 리덕스 데브툴즈를 사용하기 위해 미들웨어에 리덕스 데브툴즈를 사용하도록 합니다
 const bindMiddleware = (middleware: any) => {
 	if (process.env.NODE_ENV !== "production") {
 		const { composeWithDevTools } = require("redux-devtools-extension");

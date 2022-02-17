@@ -18,7 +18,7 @@ const SettingBox = styled.div`
 	padding: 1rem;
 	margin: 2rem 0;
 	box-sizing: border-box;
-	border-radius: 1.4vh;
+	border-radius: 0.84vh;
 	background: ${color.white};
 `;
 
@@ -30,20 +30,35 @@ const SettingRow = styled.div`
 	margin: 0.5rem;
 `;
 
+const SaveBtn = styled.button`
+	${flexCenterDir}
+
+	background: ${color.point};
+	color: ${color.black};
+	width: 5rem;
+	height: 2rem;
+	border-radius: 0.44vh;
+	font-weight: bold;
+	letter-spacing: 0.2rem;
+	margin-top: 3rem;
+	cursor: pointer;
+`;
+
 function Setting() {
 	return (
 		<>
 			<Header title="setting" />
 			<SettingSection>
-				{/* 각 재료들의 판매 가격을 적어주세요 */}
+				<br />
+				<span>각 재료들의 판매 가격을 적어주세요</span>
 				<SettingBox>
 					<SettingRow>
 						<>명파</>
 						<>20</>
 					</SettingRow>
 				</SettingBox>
-
-				{/* 해당 캐릭터의 휴게 기준 2수 재료 수급개수를 적어주세요 */}
+				<br />
+				<span>해당 캐릭터의 휴게 기준 2수 재료 수급개수를 적어주세요</span>
 				<SettingBox>
 					<SettingRow>
 						<>캐릭명</>
@@ -54,8 +69,10 @@ function Setting() {
 						<>개수</>
 					</SettingRow>
 				</SettingBox>
-
-				<button>저장</button>
+				<br />
+				<span>새로운 캐릭터를 추가해보세요</span>
+				<SettingBox></SettingBox>
+				<SaveBtn>저장</SaveBtn>
 			</SettingSection>
 		</>
 	);

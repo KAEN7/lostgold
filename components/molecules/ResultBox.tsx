@@ -22,7 +22,28 @@ const ResultSection = styled.ul`
 const ResultList = styled.div`
 	display: flex;
 	justify-content: center;
+	align-items: center;
 	width: 100%;
+	margin-bottom: 0.5rem;
+
+	&:first-child {
+		margin-bottom: 1rem;
+		font-weight: bold;
+		font-size: 105%;
+	}
+
+	&:last-child {
+		margin-top: 2rem;
+		font-size: 1.2rem;
+		font-weight: bold;
+
+		.result {
+			margin-left: 0.5rem;
+			font-size: 2rem;
+			color: ${color.point};
+			text-shadow: 1px 1px 2px black;
+		}
+	}
 `;
 
 const HeadItem = styled.span`
@@ -68,7 +89,7 @@ const ResultBox: React.FC<IResultBox> = ({ user }) => {
 			))}
 
 			<ResultList>
-				총 주간 골드<span>{month}</span>
+				총 주간골드 <span className="result">{month}G</span>
 			</ResultList>
 		</ResultSection>
 	);

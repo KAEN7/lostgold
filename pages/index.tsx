@@ -8,7 +8,6 @@ import { pageDefault, scrollBar } from "../styles/theme";
 
 const HomeSection = styled.section`
 	${pageDefault}
-	${scrollBar}
 `;
 
 const Index: NextPage = () => {

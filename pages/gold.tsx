@@ -1,11 +1,12 @@
 // Gold 메인 화면
 
+import Link from "next/link";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import Header from "../../components/Header";
-import ResultBox from "../../components/molecules/ResultBox";
-import TableRow from "../../components/molecules/TableRow";
-import { pageDefault, color, scrollBar } from "../../styles/theme";
+import Header from "../components/Header";
+import ResultBox from "../components/molecules/ResultBox";
+import TableRow from "../components/molecules/TableRow";
+import { pageDefault, color, scrollBar } from "../styles/theme";
 
 const GoldSection = styled.section`
 	${scrollBar}
@@ -21,7 +22,12 @@ const TableBox = styled.ul`
 	height: fit-content;
 `;
 
-function index() {
+const PlusBtn = styled.a`
+	font-size: 2rem;
+	cursor: pointer;
+`;
+
+function gold() {
 	const user = useSelector((state: any) => state.user.userData); // state: RootState
 	console.log(user, "user reducer");
 	return (
@@ -39,10 +45,14 @@ function index() {
 					))}
 				</TableBox>
 
+				<Link href="setting">
+					<PlusBtn>+</PlusBtn>
+				</Link>
+
 				<ResultBox user={user} />
 			</GoldSection>
 		</>
 	);
 }
 
-export default index;
+export default gold;

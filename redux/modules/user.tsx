@@ -12,7 +12,7 @@ export const getUsers = createAction(GET_USERS);
 const initialState = {
 	userData: [
 		{
-			name: "닉네임",
+			name: "카엔이었소",
 			job: "창술사",
 			list: [
 				{ name: "아르고스", gold: 1300, boolean: true },
@@ -20,7 +20,7 @@ const initialState = {
 			],
 		},
 		{
-			name: "test",
+			name: "카엔입니다",
 			job: "배틀마스터",
 			list: [{ name: "아르고스", gold: 1300, boolean: true }],
 		},
