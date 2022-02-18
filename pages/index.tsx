@@ -14,7 +14,7 @@ const Index: NextPage = () => {
 	return (
 		<HomeSection>
 			<Header title="home" />
-			<>test Home page</>
+			<h2>내 한달 골드 수입을 한눈에 확인해보세요!</h2>
 		</HomeSection>
 	);
 };

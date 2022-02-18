@@ -23,6 +23,8 @@ const TableBox = styled.ul`
 `;
 
 const PlusBtn = styled.a`
+	padding: 0;
+	margin: 0 auto;
 	font-size: 2rem;
 	cursor: pointer;
 `;

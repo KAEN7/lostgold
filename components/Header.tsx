@@ -11,6 +11,8 @@ const HeaderSection = styled.header`
 	top: 0;
 	position: fixed;
 	box-sizing: border-box;
+	z-index: 2;
+	background: ${color.black};
 `;
 
 interface IHeaderBtnType {
