@@ -24,7 +24,6 @@ const SettingBox = styled.div<ISettingBox>`
 
 	width: 30rem;
 	padding: 1rem;
-	margin: 2rem 0;
 	box-sizing: border-box;
 	border-radius: 0.84vh;
 	background: ${color.white};
@@ -39,7 +38,7 @@ const SettingRow = styled.div`
 `;
 
 // 아이템 박스
-const ItemBox = styled.div`
+const ItemBox = styled.form`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -104,10 +103,19 @@ function Setting() {
 		{ name: "경이로운 명예의 돌파석", src: "", value: 0, toggle: true },
 	]);
 
-	// 재료 input값 변경
+	// 재료 input toggle 변경
+	const onSubmitMatarial = (e: any, idx: number, boo: boolean) => {
+		const temp = matarialList.map((el, index) =>
+			idx === index ? { ...el, toggle: boo } : el
+		);
+		setMatarialList(temp);
+		e.preventDefault();
+	};
+
+	// 재료 input value 변경
 	const onChangeMatarial = (e: any, idx: number) => {
 		const temp = matarialList.map((el, index) =>
-			idx === index ? { ...el, value: e.target.value } : el
+			idx === index ? { ...el, toggle: true, value: e.target.value } : el
 		);
 		setMatarialList(temp);
 	};
@@ -120,10 +128,13 @@ function Setting() {
 				<h3>각 재료들의 판매 가격을 적어주세요</h3>
 				<SettingBox defaultStyle={true}>
 					{matarialList.map((el, idx) => (
-						<ItemBox key={`item${idx}`}>
+						<ItemBox
+							key={`item${idx}`}
+							onSubmit={(e) => onSubmitMatarial(e, idx, false)}
+						>
 							<></>
 							<h4 className="subTitle">{el.name}</h4>
-							{el.value === 0 && el.toggle ? (
+							{el.toggle ? (
 								<input
 									type="number"
 									className="goldInput"
@@ -131,7 +142,12 @@ function Setting() {
 									onChange={(e) => onChangeMatarial(e, idx)}
 								/>
 							) : (
-								<span className="gold">{el.value}G</span>
+								<span
+									className="gold"
+									onClick={(e) => onSubmitMatarial(e, idx, true)}
+								>
+									{el.value}G
+								</span>
 							)}
 						</ItemBox>
 					))}

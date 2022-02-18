@@ -42,7 +42,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 						site_name: "Lost Gold",
 					}}
 				/>
-				;
 				<Component {...pageProps} />
 			</AppSection>
 		</PersistGate>
