@@ -3,9 +3,12 @@
  */
 
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import ListBox from "../components/atoms/ListBox";
 import Header from "../components/Header";
 import { flexCenterDir, pageDefault, color } from "../styles/theme";
+import { putRaidToggle } from "../redux/modules/user";
 
 const SettingSection = styled.header`
 	${pageDefault}
@@ -19,7 +22,7 @@ const SettingBox = styled.div<ISettingBox>`
 	/* 재료 가격 관련 함수 */
 	${(props) => !props.defaultStyle && flexCenterDir}
 	display: ${(props) => props.defaultStyle && "flex"};
-	justify-content: ${(props) => props.defaultStyle && "space-between"};
+	justify-content: ${(props) => props.defaultStyle && "space-around"};
 	flex-wrap: ${(props) => props.defaultStyle && "wrap"};
 
 	width: 30rem;
@@ -35,6 +38,10 @@ const SettingRow = styled.div`
 	align-items: center;
 	color: ${color.black};
 	margin: 0.5rem;
+
+	span {
+		margin: 0 0.5rem;
+	}
 `;
 
 // 아이템 박스
@@ -42,12 +49,12 @@ const ItemBox = styled.form`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	width: 10rem;
+	width: 9rem;
 	color: black;
 	margin: 0.5rem;
 
 	.subTitle {
-		width: fit-content;
+		width: 6rem;
 		margin-right: 0.3rem;
 	}
 
@@ -56,7 +63,6 @@ const ItemBox = styled.form`
 		border: none;
 		border-bottom: 0.1rem solid ${color.darkPoint};
 		outline: none;
-		color: ${color.point};
 		text-align: center;
 
 		&::placeholder {
@@ -72,7 +78,13 @@ const ItemBox = styled.form`
 	}
 `;
 
-// 버튼 스타일 추후에 Storybook으로 전환
+const RestHeader = styled.span`
+	font-weight: bold;
+	padding-right: 0.5rem;
+	border-right: 0.2rem solid ${color.darkPoint};
+`;
+
+// todo 버튼 스타일 추후에 Storybook으로 전환
 const SaveBtn = styled.button`
 	${flexCenterDir}
 
@@ -92,6 +104,9 @@ const SaveBtn = styled.button`
 `;
 
 function Setting() {
+	const dispatch = useDispatch();
+	const userData = useSelector((state: any) => state.user.userData);
+
 	// 재료 리스트
 	// todo 로컬 스토리지로 추후에 관리 전환
 	const [matarialList, setMatarialList] = useState([
@@ -110,6 +125,8 @@ function Setting() {
 		);
 		setMatarialList(temp);
 		e.preventDefault();
+
+		alert("저장되었습니다!");
 	};
 
 	// 재료 input value 변경
@@ -120,11 +137,47 @@ function Setting() {
 		setMatarialList(temp);
 	};
 
+	// 레이드 목록
+	const raidList = [
+		{ name: "우르닐" },
+		{ name: "루메루스" },
+		{ name: "빙결의 레기오로스" },
+		{ name: "베루투스" },
+		{ name: "크로마니움" },
+		{ name: "나크라세나" },
+		{ name: "홍염의 요호" },
+		{ name: "타이탈로스" },
+		{ name: "어둠의 레기오로스" },
+		{ name: "헬가이아" },
+		{ name: "칼벤투스" },
+		{ name: "아카테스" },
+		{ name: "혹한의 헬가이아" },
+		{ name: "용암 크로마니움" },
+		{ name: "레바노스" },
+		{ name: "엘버하스틱" },
+		{ name: "중갑 나크라세나" },
+		{ name: "이그렉시온" },
+		{ name: "흑야의 요호" },
+		{ name: "벨가누스" },
+		{ name: "데스칼루다" },
+		{ name: "쿤겔라니움" },
+		{ name: "칼엘리고스" },
+		{ name: "하누마탄" },
+	];
+
+	const onTitlehandler = (name: string, charName: string) => {
+		// dispatch(PUT_RAID_TOGGLE);
+		dispatch(putRaidToggle({ charName: charName, name: name, toggle: true }));
+	};
+	console.log(userData, "test userData");
+
 	return (
 		<>
 			<Header title="setting" />
 			<SettingSection>
 				<br />
+
+				{/* 재료 정보 */}
 				<h3>각 재료들의 판매 가격을 적어주세요</h3>
 				<SettingBox defaultStyle={true}>
 					{matarialList.map((el, idx) => (
@@ -153,18 +206,28 @@ function Setting() {
 					))}
 				</SettingBox>
 				<br />
+
+				{/* 레이드 정보 */}
 				<h3>해당 캐릭터의 휴게 기준 2수 재료 수급개수를 적어주세요</h3>
 				<SettingBox>
-					<SettingRow>
-						<>캐릭명</>
-						<>레이드</>
-						<>명파</>
-						<>개수</>
-						<>파괴석</>
-						<>개수</>
-					</SettingRow>
+					{userData.map((el: any, idx: number) => (
+						<SettingRow key={`setup${idx}`}>
+							<RestHeader>{el.name}</RestHeader>
+							{el.raid.toggle ? (
+								<span>{el.raid.name}</span>
+							) : (
+								<ListBox name={el.name} onTitlehandler={onTitlehandler}>
+									{raidList}
+								</ListBox>
+							)}
+							{true ? <span>명파: 개수</span> : <ListBox>{raidList}</ListBox>}
+							{true ? <span>파괴석: 개수</span> : <ListBox>{raidList}</ListBox>}
+						</SettingRow>
+					))}
 				</SettingBox>
 				<br />
+
+				{/* 캐릭터 추가 */}
 				<h3>새로운 캐릭터를 추가해보세요</h3>
 				<SettingBox></SettingBox>
 

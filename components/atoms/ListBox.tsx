@@ -36,14 +36,18 @@ interface IListItem {
 export interface IListBox {
 	// children?: IListItem[];
 	children?: any;
+	name?: string;
 	onTitlehandler?: any;
 }
 
-const ListBox: React.FC<IListBox> = ({ children, onTitlehandler }) => {
+const ListBox: React.FC<IListBox> = ({ children, name, onTitlehandler }) => {
 	return (
 		<ListSection>
 			{children.map((el: any, idx: number) => (
-				<ListItem onClick={() => onTitlehandler(el.name)} key={`list${idx}`}>
+				<ListItem
+					onClick={() => onTitlehandler(el.name, name)}
+					key={`list${idx}`}
+				>
 					{el.name}
 				</ListItem>
 			))}
