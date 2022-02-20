@@ -25,7 +25,8 @@ const ListSection = styled.ul`
 const ListItem = styled.li`
 	list-style-type: none;
 	width: 100%;
-	margin-bottom: 5px;
+	margin: 0.4rem auto;
+	cursor: pointer;
 `;
 
 interface IListItem {

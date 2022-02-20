@@ -7,8 +7,15 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import ListBox from "../components/atoms/ListBox";
 import Header from "../components/Header";
-import { flexCenterDir, pageDefault, color } from "../styles/theme";
-import { putRaidToggle, putRaidToggleOn } from "../redux/modules/user";
+import { flexCenter, flexCenterDir, pageDefault, color } from "../styles/theme";
+import {
+	putRaidToggle,
+	putRaidToggleOn,
+	putHonerStoneToggle,
+	putStoneToggle,
+	putHonerStoneName,
+	putStoneName,
+} from "../redux/modules/user";
 
 const SettingSection = styled.header`
 	${pageDefault}
@@ -38,11 +45,7 @@ const SettingRow = styled.div`
 	align-items: center;
 	color: ${color.black};
 	margin: 0.5rem;
-
-	span {
-		margin: 0 0.5rem;
-		cursor: pointer;
-	}
+	flex-wrap: wrap;
 `;
 
 // 아이템 박스
@@ -83,6 +86,26 @@ const RestHeader = styled.span`
 	font-weight: bold;
 	padding-right: 0.5rem;
 	border-right: 0.2rem solid ${color.darkPoint};
+`;
+
+// input 들어가는 form 박스
+const FormBox = styled.form`
+	${flexCenter}
+
+	margin: 0 0.5rem;
+	cursor: pointer;
+
+	input {
+		width: 3rem;
+		margin-left: 0.3rem;
+		outline: none;
+		border: none;
+		border-bottom: 0.1rem solid ${color.darkPoint};
+
+		&::placeholder {
+			text-align: center;
+		}
+	}
 `;
 
 // todo 버튼 스타일 추후에 Storybook으로 전환
@@ -175,7 +198,60 @@ function Setting() {
 	const onTitlehandler = (name: string, charName: string) => {
 		dispatch(putRaidToggle({ charName: charName, name: name, toggle: true }));
 	};
-	console.log(userData, "test userData");
+
+	// 재료 개수 핸들러
+	const onCountHandler = (
+		e: any,
+		name: string,
+		title: string,
+		check: boolean
+	) => {
+		e.preventDefault();
+		if (title === "honorStone") {
+			check
+				? dispatch(
+						putHonerStoneToggle({
+							count: e.target.value,
+							name: name,
+							boolean: true,
+						})
+				  )
+				: dispatch(
+						putHonerStoneToggle({
+							count: e.target.value,
+							name: name,
+							boolean: false,
+						})
+				  );
+		} else if (title === "stone") {
+			check
+				? dispatch(
+						putStoneToggle({
+							count: e.target.value,
+							name: name,
+							boolean: true,
+						})
+				  )
+				: dispatch(
+						putStoneToggle({
+							count: e.target.value,
+							name: name,
+							boolean: false,
+						})
+				  );
+		}
+	};
+
+	// 재료명 변경 핸들러
+	const onHonorStoneTitleHandler = (name: string, key: string) => {
+		console.log(name, key);
+		dispatch(putHonerStoneName({ name: key, stoneName: name, boolean: true }));
+	};
+
+	const onStoneTitleHandler = (name: string, key: string) => {
+		console.log(name, key);
+		dispatch(putStoneName({ name: key, stoneName: name, boolean: true }));
+	};
 
 	return (
 		<>
@@ -220,16 +296,62 @@ function Setting() {
 						<SettingRow key={`setup${idx}`}>
 							<RestHeader>{el.name}</RestHeader>
 							{el.raid.toggle ? (
-								<span onClick={() => onToggleHandler(el.name)}>
+								<FormBox onClick={() => onToggleHandler(el.name)}>
 									{el.raid.name}
-								</span>
+								</FormBox>
 							) : (
 								<ListBox name={el.name} onTitlehandler={onTitlehandler}>
 									{raidList}
 								</ListBox>
 							)}
-							{true ? <span>명파: 개수</span> : <ListBox>{raidList}</ListBox>}
-							{true ? <span>파괴석: 개수</span> : <ListBox>{raidList}</ListBox>}
+							{/* 돌파석 */}
+							{el.honorStone.boolean ? (
+								<FormBox onSubmit={(e) => e.preventDefault()}>
+									<span
+										onClick={(e) =>
+											onCountHandler(e, el.name, "honorStone", false)
+										}
+									>
+										{el.honorStone.name}:
+									</span>
+									{
+										<input
+											type="number"
+											placeholder="개수"
+											value={el.honorStone.count}
+											onChange={(e) =>
+												onCountHandler(e, el.name, "honorStone", true)
+											}
+										/>
+									}
+								</FormBox>
+							) : (
+								<ListBox
+									name={el.name}
+									onTitlehandler={onHonorStoneTitleHandler}
+								>
+									{matarialList.slice(3)}
+								</ListBox>
+							)}
+							{/* 파괴석 */}
+							{el.stone.boolean ? (
+								<FormBox onSubmit={(e) => e.preventDefault()}>
+									<span
+										onClick={(e) => onCountHandler(e, el.name, "stone", false)}
+									>
+										{el.stone.name}:
+									</span>
+									<input
+										type="number"
+										placeholder="개수"
+										onChange={(e) => onCountHandler(e, el.name, "stone", true)}
+									/>
+								</FormBox>
+							) : (
+								<ListBox name={el.name} onTitlehandler={onStoneTitleHandler}>
+									{matarialList.slice(0, 3)}
+								</ListBox>
+							)}
 						</SettingRow>
 					))}
 				</SettingBox>
