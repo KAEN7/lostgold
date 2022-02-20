@@ -37,6 +37,7 @@ const SettingBox = styled.div<ISettingBox>`
 	box-sizing: border-box;
 	border-radius: 0.84vh;
 	background: ${color.white};
+	color: black;
 `;
 
 const SettingRow = styled.div`
@@ -253,6 +254,26 @@ function Setting() {
 		dispatch(putStoneName({ name: key, stoneName: name, boolean: true }));
 	};
 
+	// 캐릭터 생성 상태값
+	const [char, setChar] = useState({ name: "", job: "", level: 0 });
+
+	// 캐릭터 생성 핸들러
+	const onCharHandler = (flag: string, data: any) => {
+		switch (flag) {
+			case "name":
+				setChar({ ...char, name: data });
+				break;
+			case "job":
+				setChar({ ...char, job: data });
+				break;
+			case "level":
+				setChar({ ...char, level: data });
+				break;
+			default:
+				break;
+		}
+	};
+
 	return (
 		<>
 			<Header title="setting" />
@@ -344,6 +365,7 @@ function Setting() {
 									<input
 										type="number"
 										placeholder="개수"
+										value={el.stone.count}
 										onChange={(e) => onCountHandler(e, el.name, "stone", true)}
 									/>
 								</FormBox>
@@ -359,7 +381,30 @@ function Setting() {
 
 				{/* 캐릭터 추가 */}
 				<h3>새로운 캐릭터를 추가해보세요</h3>
-				<SettingBox></SettingBox>
+				<SettingBox defaultStyle={true}>
+					<FormBox onSubmit={(e) => e.preventDefault()}>
+						<span>캐릭터명</span>
+						<input
+							value={char.name}
+							onChange={(e) => onCharHandler("name", e.target.value)}
+						/>
+					</FormBox>
+					<FormBox onSubmit={(e) => e.preventDefault()}>
+						<span>직업</span>
+						<input
+							value={char.job}
+							onChange={(e) => onCharHandler("job", e.target.value)}
+						/>
+					</FormBox>
+					<FormBox onSubmit={(e) => e.preventDefault()}>
+						<span>레벨</span>
+						<input
+							type="number"
+							value={char.level}
+							onChange={(e) => onCharHandler("level", e.target.value)}
+						/>
+					</FormBox>
+				</SettingBox>
 
 				<SaveBtn>저장</SaveBtn>
 			</SettingSection>

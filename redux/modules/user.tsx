@@ -30,6 +30,7 @@ const initialState: IUserState = {
 		{
 			name: "카엔이었소",
 			job: "창술사",
+			level: 0,
 			list: [
 				{ name: "아르고스", gold: 1300, boolean: true },
 				{ name: "발탄 노말", gold: 1300, boolean: true },
@@ -41,6 +42,7 @@ const initialState: IUserState = {
 		{
 			name: "카엔입니다",
 			job: "배틀마스터",
+			level: 0,
 			list: [{ name: "아르고스", gold: 1300, boolean: true }],
 			raid: { name: "레이드", toggle: true },
 			honorStone: { name: "돌파석", count: 0, boolean: true, gold: 0 },
@@ -52,7 +54,10 @@ const initialState: IUserState = {
 // reducer
 export const user = handleActions(
 	{
-		[GET_USERS]: (state: any, action) => ({ list: state.list }),
+		[GET_USERS]: (state: any, action) => ({
+			...state,
+			userData: state.userData,
+		}),
 		// 레이드 세팅
 		[PUT_RAID_TOGGLE]: (state: any, action) => ({
 			...state,
