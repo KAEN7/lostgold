@@ -8,7 +8,7 @@ import styled from "styled-components";
 import ListBox from "../components/atoms/ListBox";
 import Header from "../components/Header";
 import { flexCenterDir, pageDefault, color } from "../styles/theme";
-import { putRaidToggle } from "../redux/modules/user";
+import { putRaidToggle, putRaidToggleOn } from "../redux/modules/user";
 
 const SettingSection = styled.header`
 	${pageDefault}
@@ -41,6 +41,7 @@ const SettingRow = styled.div`
 
 	span {
 		margin: 0 0.5rem;
+		cursor: pointer;
 	}
 `;
 
@@ -165,8 +166,13 @@ function Setting() {
 		{ name: "하누마탄" },
 	];
 
+	// toggle true 변경 핸들러
+	const onToggleHandler = (charName: string) => {
+		dispatch(putRaidToggleOn({ charName: charName, toggle: false }));
+	};
+
+	// toggle false 변경 및 리스트 팝업 관련 핸들러
 	const onTitlehandler = (name: string, charName: string) => {
-		// dispatch(PUT_RAID_TOGGLE);
 		dispatch(putRaidToggle({ charName: charName, name: name, toggle: true }));
 	};
 	console.log(userData, "test userData");
@@ -208,13 +214,15 @@ function Setting() {
 				<br />
 
 				{/* 레이드 정보 */}
-				<h3>해당 캐릭터의 휴게 기준 2수 재료 수급개수를 적어주세요</h3>
+				<h3>해당 캐릭터의 휴게 기준 재료 수급개수를 적어주세요</h3>
 				<SettingBox>
 					{userData.map((el: any, idx: number) => (
 						<SettingRow key={`setup${idx}`}>
 							<RestHeader>{el.name}</RestHeader>
 							{el.raid.toggle ? (
-								<span>{el.raid.name}</span>
+								<span onClick={() => onToggleHandler(el.name)}>
+									{el.raid.name}
+								</span>
 							) : (
 								<ListBox name={el.name} onTitlehandler={onTitlehandler}>
 									{raidList}

@@ -3,15 +3,21 @@ import { createAction, handleActions } from "redux-actions";
 axios.defaults.withCredentials = true;
 
 // actions type
-const GET_USERS = "user/GET_USERS"; // 유저 조회
-const PUT_RAID_TOGGLE = "user/PUT_RAID_TOGGLE"; // 레이드 토글 전환
+const GET_USERS = "user/GET_USERS" as const; // 유저 조회
+const PUT_RAID_TOGGLE = "user/PUT_RAID_TOGGLE" as const; // 레이드 토글 전환
+const PUT_RAID_TOGGLE_ON = "user/PUT_RAID_TOGGLE_ON" as const; // 레이드 토글 온
 
 // action
 export const getUsers = createAction(GET_USERS);
 export const putRaidToggle = createAction(PUT_RAID_TOGGLE);
+export const putRaidToggleOn = createAction(PUT_RAID_TOGGLE_ON);
 
 // initialState
-const initialState = {
+interface IUserState {
+	userData?: object[];
+}
+
+const initialState: IUserState = {
 	userData: [
 		{
 			name: "카엔이었소",
@@ -26,14 +32,10 @@ const initialState = {
 			name: "카엔입니다",
 			job: "배틀마스터",
 			list: [{ name: "아르고스", gold: 1300, boolean: true }],
-			raid: { name: "레이드", toggle: false },
+			raid: { name: "레이드", toggle: true },
 		},
 	],
 };
-
-interface initState {
-	userData?: [];
-}
 
 // reducer
 export const user = handleActions(
@@ -47,6 +49,20 @@ export const user = handleActions(
 							...el,
 							raid: {
 								name: action.payload.name,
+								toggle: action.payload.toggle,
+							},
+					  }
+					: el
+			),
+		}),
+		[PUT_RAID_TOGGLE_ON]: (state: any, action) => ({
+			...state,
+			userData: state.userData.map((el: any) =>
+				el.name === action.payload.charName
+					? {
+							...el,
+							raid: {
+								name: el.raid.name,
 								toggle: action.payload.toggle,
 							},
 					  }
