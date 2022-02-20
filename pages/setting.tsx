@@ -9,6 +9,7 @@ import ListBox from "../components/atoms/ListBox";
 import Header from "../components/Header";
 import { flexCenter, flexCenterDir, pageDefault, color } from "../styles/theme";
 import {
+	getUsers,
 	putRaidToggle,
 	putRaidToggleOn,
 	putHonerStoneToggle,
@@ -274,6 +275,23 @@ function Setting() {
 		}
 	};
 
+	// 저장 핸들러
+	const onSaveHandler = (e: any) => {
+		e.preventDefault();
+		dispatch(
+			getUsers({
+				name: char.name,
+				job: char.job,
+				level: char.level,
+				list: [],
+				raid: { name: "레이드", toggle: true },
+				honorStone: { name: "돌파석", count: 0, boolean: true, gold: 0 },
+				stone: { name: "파괴석", count: 0, boolean: true, gold: 0 },
+			})
+		);
+		alert("저장되었습니다");
+	};
+
 	return (
 		<>
 			<Header title="setting" />
@@ -313,69 +331,77 @@ function Setting() {
 				{/* 레이드 정보 */}
 				<h3>해당 캐릭터의 휴게 기준 재료 수급개수를 적어주세요</h3>
 				<SettingBox>
-					{userData.map((el: any, idx: number) => (
-						<SettingRow key={`setup${idx}`}>
-							<RestHeader>{el.name}</RestHeader>
-							{el.raid.toggle ? (
-								<FormBox onClick={() => onToggleHandler(el.name)}>
-									{el.raid.name}
-								</FormBox>
-							) : (
-								<ListBox name={el.name} onTitlehandler={onTitlehandler}>
-									{raidList}
-								</ListBox>
-							)}
-							{/* 돌파석 */}
-							{el.honorStone.boolean ? (
-								<FormBox onSubmit={(e) => e.preventDefault()}>
-									<span
-										onClick={(e) =>
-											onCountHandler(e, el.name, "honorStone", false)
+					{userData.length === 0 ? (
+						<h3>캐릭터가 없습니다 새로 추가해보세요!</h3>
+					) : (
+						userData.map((el: any, idx: number) => (
+							<SettingRow key={`setup${idx}`}>
+								<RestHeader>{el.name}</RestHeader>
+								{el.raid.toggle ? (
+									<FormBox onClick={() => onToggleHandler(el.name)}>
+										{el.raid.name}
+									</FormBox>
+								) : (
+									<ListBox name={el.name} onTitlehandler={onTitlehandler}>
+										{raidList}
+									</ListBox>
+								)}
+								{/* 돌파석 */}
+								{el.honorStone.boolean ? (
+									<FormBox onSubmit={(e) => e.preventDefault()}>
+										<span
+											onClick={(e) =>
+												onCountHandler(e, el.name, "honorStone", false)
+											}
+										>
+											{el.honorStone.name}:
+										</span>
+										{
+											<input
+												type="number"
+												placeholder="개수"
+												value={el.honorStone.count}
+												onChange={(e) =>
+													onCountHandler(e, el.name, "honorStone", true)
+												}
+											/>
 										}
+									</FormBox>
+								) : (
+									<ListBox
+										name={el.name}
+										onTitlehandler={onHonorStoneTitleHandler}
 									>
-										{el.honorStone.name}:
-									</span>
-									{
+										{matarialList.slice(3)}
+									</ListBox>
+								)}
+								{/* 파괴석 */}
+								{el.stone.boolean ? (
+									<FormBox onSubmit={(e) => e.preventDefault()}>
+										<span
+											onClick={(e) =>
+												onCountHandler(e, el.name, "stone", false)
+											}
+										>
+											{el.stone.name}:
+										</span>
 										<input
 											type="number"
 											placeholder="개수"
-											value={el.honorStone.count}
+											value={el.stone.count}
 											onChange={(e) =>
-												onCountHandler(e, el.name, "honorStone", true)
+												onCountHandler(e, el.name, "stone", true)
 											}
 										/>
-									}
-								</FormBox>
-							) : (
-								<ListBox
-									name={el.name}
-									onTitlehandler={onHonorStoneTitleHandler}
-								>
-									{matarialList.slice(3)}
-								</ListBox>
-							)}
-							{/* 파괴석 */}
-							{el.stone.boolean ? (
-								<FormBox onSubmit={(e) => e.preventDefault()}>
-									<span
-										onClick={(e) => onCountHandler(e, el.name, "stone", false)}
-									>
-										{el.stone.name}:
-									</span>
-									<input
-										type="number"
-										placeholder="개수"
-										value={el.stone.count}
-										onChange={(e) => onCountHandler(e, el.name, "stone", true)}
-									/>
-								</FormBox>
-							) : (
-								<ListBox name={el.name} onTitlehandler={onStoneTitleHandler}>
-									{matarialList.slice(0, 3)}
-								</ListBox>
-							)}
-						</SettingRow>
-					))}
+									</FormBox>
+								) : (
+									<ListBox name={el.name} onTitlehandler={onStoneTitleHandler}>
+										{matarialList.slice(0, 3)}
+									</ListBox>
+								)}
+							</SettingRow>
+						))
+					)}
 				</SettingBox>
 				<br />
 
@@ -406,7 +432,7 @@ function Setting() {
 					</FormBox>
 				</SettingBox>
 
-				<SaveBtn>저장</SaveBtn>
+				<SaveBtn onClick={(e) => onSaveHandler(e)}>저장</SaveBtn>
 			</SettingSection>
 		</>
 	);
