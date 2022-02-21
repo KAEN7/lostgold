@@ -54,6 +54,7 @@ export const pageSetting = css`
 	box-sizing: border-box;
 	padding: 3rem;
 	overflow-y: auto;
+
 	::-webkit-scrollbar {
 		display: none;
 	}
@@ -120,6 +121,7 @@ export const pageDefault = css`
 	justify-content: flex-start;
 	align-items: center;
 	background: ${color.black};
+	overflow-x: hidden;
 `;
 
 export default theme;
