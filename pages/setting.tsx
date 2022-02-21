@@ -117,11 +117,12 @@ const SaveBtn = styled.button`
 	background: ${color.darkPoint};
 	color: ${color.black};
 	width: 5rem;
+	min-height: 2rem;
 	height: 2rem;
 	border-radius: 0.44vh;
 	font-weight: bold;
 	letter-spacing: 0.2rem;
-	margin-top: 3rem;
+	margin: 3rem auto;
 	cursor: pointer;
 
 	&:hover {
@@ -289,6 +290,7 @@ function Setting() {
 				stone: { name: "파괴석", count: 0, boolean: true, gold: 0 },
 			})
 		);
+		setChar({ name: "", job: "", level: 0 });
 		alert("저장되었습니다");
 	};
 
@@ -306,7 +308,6 @@ function Setting() {
 							key={`item${idx}`}
 							onSubmit={(e) => onSubmitMatarial(e, idx, false)}
 						>
-							<></>
 							<h4 className="subTitle">{el.name}</h4>
 							{el.toggle ? (
 								<input
@@ -356,16 +357,15 @@ function Setting() {
 										>
 											{el.honorStone.name}:
 										</span>
-										{
-											<input
-												type="number"
-												placeholder="개수"
-												value={el.honorStone.count}
-												onChange={(e) =>
-													onCountHandler(e, el.name, "honorStone", true)
-												}
-											/>
-										}
+
+										<input
+											type="number"
+											placeholder="개수"
+											value={el.honorStone.count}
+											onChange={(e) =>
+												onCountHandler(e, el.name, "honorStone", true)
+											}
+										/>
 									</FormBox>
 								) : (
 									<ListBox
