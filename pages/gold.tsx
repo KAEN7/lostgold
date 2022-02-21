@@ -31,7 +31,7 @@ const PlusBtn = styled.a`
 
 function gold() {
 	const user = useSelector((state: any) => state.user.userData); // state: RootState
-	console.log(user, "user reducer");
+
 	return (
 		<>
 			<Header title="gold" />
@@ -43,6 +43,7 @@ function gold() {
 							job={el.job}
 							key={`el${idx}`}
 							list={el.list}
+							raid={el.raid}
 						></TableRow>
 					))}
 				</TableBox>

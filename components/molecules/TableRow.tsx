@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { flexCenter, color } from "../../styles/theme";
-import { user } from "../../redux/modules/user";
+import { postRaidList } from "../../redux/modules/user";
 import CheckBox from "../atoms/CheckBox";
 import HoverBox from "../atoms/HoverBox";
 
@@ -49,20 +49,16 @@ export interface ICheckBox {
 	name?: string;
 	job?: string;
 	list?: Array<any>;
+	raid?: object;
 }
 
-const TableRow: React.FC<ICheckBox> = ({ name, job, list }) => {
+const TableRow: React.FC<ICheckBox> = ({ name, job, list, raid }) => {
 	const [hover, setHover] = useState(false);
 	const dispatch = useDispatch();
 
-	let data = 12;
-	// dispatch(user(data));
-
 	// 새로 생성시 user list에 추가
-	console.log(list);
-
 	const addHandler = () => {
-		console.log("plus");
+		// dispatch(postRaidList({ name: name }));
 	};
 
 	return (
@@ -79,8 +75,15 @@ const TableRow: React.FC<ICheckBox> = ({ name, job, list }) => {
 				</span>
 			</ItemHeader>
 
-			{list?.map((el) => (
-				<CheckBox data={el} />
+			<CheckBox data={raid} flag="raid" />
+			{list?.map((el, idx: number) => (
+				<CheckBox
+					data={el}
+					flag="list"
+					idx={idx}
+					key={`checklist${idx}`}
+					charName={name}
+				/>
 			))}
 
 			<span className="plus" onClick={() => addHandler()}>

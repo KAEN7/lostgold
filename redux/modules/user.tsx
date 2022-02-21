@@ -10,6 +10,8 @@ const PUT_HONER_STONE_TOGGLE = "user/PUT_HONER_STONE_TOGGLE" as const; // 돌파
 const PUT_HONER_STONE_NAME = "user/PUT_HONER_STONE_NAME" as const; // 돌파석 이름 변경
 const PUT_STONE_TOGGLE = "user/PUT_STONE_TOGGLE" as const; // 파괴석 토글 전환
 const PUT_STONE_NAME = "user/PUT_STONE_NAME" as const; // 파괴석 이름 변경
+const POST_RAID_LIST = "user/POST_RAID_LIST" as const; // 레이드 리스트 추가
+const PUT_WEEK_RAID = "user/PUT_WEEK_RAID" as const; // 주간 레이드 골드 및 변경
 
 // action
 export const getUsers = createAction(GET_USERS);
@@ -19,37 +21,40 @@ export const putHonerStoneToggle = createAction(PUT_HONER_STONE_TOGGLE);
 export const putHonerStoneName = createAction(PUT_HONER_STONE_NAME);
 export const putStoneToggle = createAction(PUT_STONE_TOGGLE);
 export const putStoneName = createAction(PUT_STONE_NAME);
+export const postRaidList = createAction(POST_RAID_LIST);
+export const putWeekRaid = createAction(PUT_WEEK_RAID);
 
 // initialState
 interface IUserState {
 	userData?: object[];
+	testData?: object[];
 }
 
-// ! 임시 데이터
-// {
-// 	name: "카엔이었소",
-// 	job: "창술사",
-// 	level: 0,
-// 	list: [
-// 		{ name: "아르고스", gold: 1300, boolean: true },
-// 		{ name: "발탄 노말", gold: 1300, boolean: true },
-// 	],
-// 	raid: { name: "레이드", toggle: true },
-// 	honorStone: { name: "돌파석", count: 0, boolean: true, gold: 0 },
-// 	stone: { name: "파괴석", count: 0, boolean: true, gold: 0 },
-// },
-// {
-// 	name: "카엔입니다",
-// 	job: "배틀마스터",
-// 	level: 0,
-// 	list: [{ name: "아르고스", gold: 1300, boolean: true }],
-// 	raid: { name: "레이드", toggle: true },
-// 	honorStone: { name: "돌파석", count: 0, boolean: true, gold: 0 },
-// 	stone: { name: "파괴석", count: 0, boolean: true, gold: 0 },
-// },
-
 const initialState: IUserState = {
-	userData: [],
+	testData: [],
+	userData: [
+		{
+			name: "카엔이었소",
+			job: "창술사",
+			level: 0,
+			list: [
+				{ name: "아르고스", gold: 1300, boolean: true },
+				{ name: "발탄 노말", gold: 1300, boolean: true },
+			],
+			raid: { name: "레이드", toggle: true },
+			honorStone: { name: "돌파석", count: 0, boolean: true, gold: 0 },
+			stone: { name: "파괴석", count: 0, boolean: true, gold: 0 },
+		},
+		{
+			name: "카엔입니다",
+			job: "배틀마스터",
+			level: 0,
+			list: [{ name: "아르고스", gold: 1300, boolean: true }],
+			raid: { name: "레이드", toggle: true },
+			honorStone: { name: "돌파석", count: 10, boolean: true, gold: 40 },
+			stone: { name: "파괴석", count: 4, boolean: true, gold: 40 },
+		},
+	],
 };
 
 // reducer
@@ -147,6 +152,43 @@ export const user = handleActions(
 								name: action.payload.stoneName,
 								boolean: action.payload.boolean,
 							},
+					  }
+					: el
+			),
+		}),
+		[POST_RAID_LIST]: (state: any, action) => ({
+			...state,
+			userData: state.userData.map((el: any) =>
+				el.name === action.payload.name
+					? {
+							...el,
+							list: [
+								...el.list,
+								{
+									name: "입력",
+									gold: 0,
+									boolean: true,
+								},
+							],
+					  }
+					: el
+			),
+		}),
+		[PUT_WEEK_RAID]: (state: any, action) => ({
+			...state,
+			userData: state.userData.map((el: any) =>
+				el.name === action.payload.charName
+					? {
+							...el,
+							list: el.list.filter((data: object, idx: number) =>
+								idx === action.payload.idx
+									? {
+											name: action.payload.name,
+											gold: action.payload.gold,
+											boolean: action.payload.boolean,
+									  }
+									: data
+							),
 					  }
 					: el
 			),

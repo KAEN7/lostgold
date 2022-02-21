@@ -1,5 +1,6 @@
 // 호버시 나타날 리스트
 
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { flexCenterDir, color } from "../../styles/theme";
 
@@ -61,18 +62,25 @@ export interface IResultBox {
 	user?: any;
 }
 
-const ResultBox: React.FC<IResultBox> = ({ user }) => {
+const ResultBox: React.FC<IResultBox> = () => {
+	const user = useSelector((state: any) => state.user.userData);
+
 	// 주간 골드 배열
 	const week = user.map((el: any) => {
 		let sum = 0;
+		const honorStone =
+			el.honorStone.boolean && el.honorStone.count * el.honorStone.gold;
+		const stone = el.stone.boolean && el.stone.count * el.stone.gold;
+		const raid = (honorStone + stone) * 2;
 		const listArr = el.list;
 		listArr.forEach((data: any) => data.boolean && (sum += data.gold));
 
-		return sum;
+		return sum + raid;
 	});
 
 	// 주간 골드 배열 총합
-	const month = week.reduce((a: number, c: number) => a + c);
+	const month =
+		week.length !== 0 ? week.reduce((a: number, c: number) => a + c) : 0;
 
 	return (
 		<ResultSection>
@@ -81,12 +89,16 @@ const ResultBox: React.FC<IResultBox> = ({ user }) => {
 				<BodyItem>주간 골드</BodyItem>
 			</ResultList>
 
-			{user.map((el: any, idx: number) => (
-				<ResultList key={`result${idx}`}>
-					<HeadItem>{el.name}</HeadItem>
-					<BodyItem>{week[idx]}G</BodyItem>
-				</ResultList>
-			))}
+			{user.length === 0 ? (
+				<h3>캐릭터가 없습니다</h3>
+			) : (
+				user.map((el: any, idx: number) => (
+					<ResultList key={`result${idx}`}>
+						<HeadItem>{el.name}</HeadItem>
+						<BodyItem>{week[idx]}G</BodyItem>
+					</ResultList>
+				))
+			)}
 
 			<ResultList>
 				총 주간골드 <span className="result">{month}G</span>

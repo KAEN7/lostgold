@@ -1,8 +1,10 @@
 // 체크박스
 
-import { FormEvent, useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { flexCenterDir, color } from "../../styles/theme";
+import { putWeekRaid } from "../../redux/modules/user";
 import ListBox from "./ListBox";
 
 const CheckSection = styled.div`
@@ -34,12 +36,16 @@ const CheckItem = styled.div<ICheckItem>`
 
 export interface ICheckBox {
 	data?: any;
+	flag?: string;
+	idx?: number;
+	charName?: string;
 }
 
-const CheckBox: React.FC<ICheckBox> = ({ data }) => {
+const CheckBox: React.FC<ICheckBox> = ({ data, flag, idx, charName }) => {
 	const [checked, setChecked] = useState(false); // 체크박스 유무
 	const [title, setTitle] = useState(false); // title 상태값
 	const [titleValue, setTitleValue] = useState("입력"); // title value 상태값
+	const dispatch = useDispatch();
 
 	// todo 추후에 리덕스로 관리
 	const titleList = [
@@ -68,12 +74,34 @@ const CheckBox: React.FC<ICheckBox> = ({ data }) => {
 
 	titleValue === "입력" && setTitleValue(data.name);
 
+	// 체크 상태 변경 핸들러
+
+	useEffect(() => {
+		const gold = titleList.forEach((el) => el.name === titleValue && el.gold);
+
+		dispatch(
+			putWeekRaid({
+				charName: charName,
+				name: titleValue,
+				gold: gold,
+				boolean: checked,
+				idx: idx,
+			})
+		);
+	}, [titleValue, title, checked]);
+
 	// todo Title을 누르면 보기 리스트가 나와야됨
 	return (
 		<CheckSection>
 			<CheckTitle onSubmit={(e: any) => onSubmitHandler(e)}>
 				{!title ? (
-					<span onClick={() => setTitle(!title)}>{titleValue}</span>
+					<span
+						onClick={() =>
+							flag !== "raid" ? setTitle(!title) : setTitle(title)
+						}
+					>
+						{titleValue}
+					</span>
 				) : (
 					<ListBox onTitlehandler={onTitlehandler}>{titleList}</ListBox>
 				)}
