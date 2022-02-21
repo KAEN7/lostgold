@@ -152,8 +152,6 @@ function Setting() {
 		);
 		setMatarialList(temp);
 		e.preventDefault();
-
-		alert("저장되었습니다!");
 	};
 
 	// 재료 input value 변경
@@ -279,19 +277,28 @@ function Setting() {
 	// 저장 핸들러
 	const onSaveHandler = (e: any) => {
 		e.preventDefault();
-		dispatch(
-			getUsers({
-				name: char.name,
-				job: char.job,
-				level: char.level,
-				list: [],
-				raid: { name: "레이드", toggle: true },
-				honorStone: { name: "돌파석", count: 0, boolean: true, gold: 0 },
-				stone: { name: "파괴석", count: 0, boolean: true, gold: 0 },
-			})
-		);
+		const sameName = userData.find((el: any) => el.name === char.name);
+
+		// dispatch로 바뀐값 저장
+		!sameName
+			? (dispatch(
+					getUsers({
+						name: char.name,
+						job: char.job,
+						level: char.level,
+						list: [],
+						raid: { name: "레이드", toggle: true },
+						honorStone: { name: "돌파석", count: 0, boolean: true, gold: 0 },
+						stone: { name: "파괴석", count: 0, boolean: true, gold: 0 },
+					})
+			  ),
+			  alert("저장되었습니다"))
+			: alert(
+					"동일한 캐릭터 이름이 이미 존재합니다. \n 다른 이름을 사용해주세요!"
+			  );
+
+		// 기본값 초기화
 		setChar({ name: "", job: "", level: 0 });
-		alert("저장되었습니다");
 	};
 
 	return (
