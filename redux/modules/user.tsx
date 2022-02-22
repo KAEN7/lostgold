@@ -31,8 +31,8 @@ interface IUserState {
 }
 
 const initialState: IUserState = {
-	testData: [],
-	userData: [
+	userData: [],
+	testData: [
 		{
 			name: "카엔이었소",
 			job: "창술사",
