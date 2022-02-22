@@ -280,7 +280,7 @@ function Setting() {
 		const sameName = userData.find((el: any) => el.name === char.name);
 
 		// dispatch로 바뀐값 저장
-		!sameName
+		!sameName && char.name !== ""
 			? (dispatch(
 					getUsers({
 						name: char.name,
@@ -294,7 +294,7 @@ function Setting() {
 			  ),
 			  alert("저장되었습니다"))
 			: alert(
-					"동일한 캐릭터 이름이 이미 존재합니다. \n 다른 이름을 사용해주세요!"
+					"동일한 캐릭터 이름이 이미 존재하거나\n캐릭터명이 입력되지 않았습니다"
 			  );
 
 		// 기본값 초기화
