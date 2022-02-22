@@ -69,8 +69,8 @@ const ResultBox: React.FC<IResultBox> = () => {
 	const week = user.map((el: any) => {
 		let sum = 0;
 		const honorStone =
-			el.honorStone.boolean && el.honorStone.count * el.honorStone.gold;
-		const stone = el.stone.boolean && el.stone.count * el.stone.gold;
+			el.raid.boolean && el.honorStone.count * el.honorStone.gold;
+		const stone = el.raid.boolean && el.stone.count * el.stone.gold;
 		const raid = (honorStone + stone) * 2;
 		const listArr = el.list;
 		listArr.forEach((data: any) => data.boolean && (sum += data.gold));

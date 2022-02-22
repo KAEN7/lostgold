@@ -287,7 +287,7 @@ function Setting() {
 						job: char.job,
 						level: char.level,
 						list: [],
-						raid: { name: "레이드", toggle: true },
+						raid: { name: "레이드", toggle: true, boolean: true },
 						honorStone: { name: "돌파석", count: 0, boolean: true, gold: 0 },
 						stone: { name: "파괴석", count: 0, boolean: true, gold: 0 },
 					})

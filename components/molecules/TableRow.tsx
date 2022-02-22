@@ -75,7 +75,7 @@ const TableRow: React.FC<ICheckBox> = ({ name, job, list, raid }) => {
 				</span>
 			</ItemHeader>
 
-			<CheckBox data={raid} flag="raid" />
+			<CheckBox data={raid} flag="raid" charName={name} />
 			{list?.map((el, idx: number) => (
 				<CheckBox
 					data={el}

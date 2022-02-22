@@ -78,15 +78,17 @@ const CheckBox: React.FC<ICheckBox> = ({ data, flag, idx, charName }) => {
 
 	useEffect(() => {
 		titleValue === "입력" && setTitleValue(data.name);
-		const gold = titleList.forEach((el) => el.name === titleValue && el.gold);
+
+		const gold = titleList.find((el) => el.name === titleValue);
 
 		dispatch(
 			putWeekRaid({
 				charName: charName,
 				name: titleValue,
-				gold: gold,
+				gold: gold && gold.gold,
 				boolean: checked,
 				idx: idx,
+				flag: flag,
 			})
 		);
 	}, [titleValue, title, checked]);

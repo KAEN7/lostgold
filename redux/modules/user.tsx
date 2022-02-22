@@ -41,7 +41,7 @@ const initialState: IUserState = {
 				{ name: "아르고스", gold: 1300, boolean: true },
 				{ name: "발탄 노말", gold: 1300, boolean: true },
 			],
-			raid: { name: "레이드", toggle: true },
+			raid: { name: "레이드", toggle: true, boolean: true },
 			honorStone: { name: "돌파석", count: 0, boolean: true, gold: 0 },
 			stone: { name: "파괴석", count: 0, boolean: true, gold: 0 },
 		},
@@ -50,7 +50,7 @@ const initialState: IUserState = {
 			job: "배틀마스터",
 			level: 0,
 			list: [{ name: "아르고스", gold: 1300, boolean: true }],
-			raid: { name: "레이드", toggle: true },
+			raid: { name: "레이드", toggle: true, boolean: true },
 			honorStone: { name: "돌파석", count: 10, boolean: true, gold: 40 },
 			stone: { name: "파괴석", count: 4, boolean: true, gold: 40 },
 		},
@@ -178,18 +178,20 @@ export const user = handleActions(
 			...state,
 			userData: state.userData.map((el: any) =>
 				el.name === action.payload.charName
-					? {
-							...el,
-							list: el.list.filter((data: object, idx: number) =>
-								idx === action.payload.idx
-									? {
-											name: action.payload.name,
-											gold: action.payload.gold,
-											boolean: action.payload.boolean,
-									  }
-									: data
-							),
-					  }
+					? action.payload.flag === "raid"
+						? { ...el, raid: { ...el.raid, boolean: action.payload.boolean } }
+						: {
+								...el,
+								list: el.list.map((data: object, idx: number) =>
+									idx === action.payload.idx
+										? {
+												name: action.payload.name,
+												gold: action.payload.gold,
+												boolean: action.payload.boolean,
+										  }
+										: data
+								),
+						  }
 					: el
 			),
 		}),
