@@ -72,11 +72,12 @@ const CheckBox: React.FC<ICheckBox> = ({ data, flag, idx, charName }) => {
 		setTitle(!title);
 	};
 
-	titleValue === "입력" && setTitleValue(data.name);
-
-	// 체크 상태 변경 핸들러
+	useEffect(() => {
+		setChecked(data.boolean);
+	}, []);
 
 	useEffect(() => {
+		titleValue === "입력" && setTitleValue(data.name);
 		const gold = titleList.forEach((el) => el.name === titleValue && el.gold);
 
 		dispatch(
