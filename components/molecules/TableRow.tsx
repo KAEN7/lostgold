@@ -58,7 +58,7 @@ const TableRow: React.FC<ICheckBox> = ({ name, job, list, raid }) => {
 
 	// 새로 생성시 user list에 추가
 	const addHandler = () => {
-		// dispatch(postRaidList({ name: name }));
+		dispatch(postRaidList({ name: name }));
 	};
 
 	return (
