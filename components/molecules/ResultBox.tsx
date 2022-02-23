@@ -67,10 +67,15 @@ const ResultBox: React.FC<IResultBox> = () => {
 
 	// 주간 골드 배열
 	const week = user.map((el: any) => {
-		let sum = 0;
+		let sum: number = 0;
 		const honorStone =
-			el.raid.boolean && el.honorStone.count * el.honorStone.gold;
-		const stone = el.raid.boolean && el.stone.count * el.stone.gold;
+			el.raid.boolean && el.honorStone.count && el.honorStone.gold
+				? Number(el.honorStone.count) * Number(el.honorStone.gold)
+				: 0;
+		const stone =
+			el.raid.boolean && el.stone.count && el.stone.gold
+				? Number(el.stone.count) * Number(el.stone.gold)
+				: 0;
 		const raid = (honorStone + stone) * 2;
 		const listArr = el.list;
 		listArr.forEach((data: any) => data.boolean && (sum += data.gold));
@@ -95,7 +100,7 @@ const ResultBox: React.FC<IResultBox> = () => {
 				user.map((el: any, idx: number) => (
 					<ResultList key={`result${idx}`}>
 						<HeadItem>{el.name}</HeadItem>
-						<BodyItem>{week[idx]}G</BodyItem>
+						<BodyItem>{week[idx] === NaN ? 0 : week[idx]}G</BodyItem>
 					</ResultList>
 				))
 			)}

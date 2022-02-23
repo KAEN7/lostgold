@@ -120,6 +120,7 @@ export const user = handleActions(
 								...el.honorStone,
 								name: action.payload.stoneName,
 								boolean: action.payload.boolean,
+								gold: action.payload.gold,
 							},
 					  }
 					: el
@@ -136,6 +137,7 @@ export const user = handleActions(
 								name: el.stone.name,
 								count: action.payload.count,
 								boolean: action.payload.boolean,
+								gold: action.payload.gold,
 							},
 					  }
 					: el

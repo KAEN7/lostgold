@@ -208,6 +208,8 @@ function Setting() {
 		check: boolean
 	) => {
 		e.preventDefault();
+		const gold = matarialList.find((el) => el.name === name);
+
 		if (title === "honorStone") {
 			check
 				? dispatch(
@@ -215,6 +217,7 @@ function Setting() {
 							count: e.target.value,
 							name: name,
 							boolean: true,
+							gold: gold ? gold.value : 0,
 						})
 				  )
 				: dispatch(
@@ -222,6 +225,7 @@ function Setting() {
 							count: e.target.value,
 							name: name,
 							boolean: false,
+							gold: gold ? gold.value : 0,
 						})
 				  );
 		} else if (title === "stone") {
@@ -231,6 +235,7 @@ function Setting() {
 							count: e.target.value,
 							name: name,
 							boolean: true,
+							gold: gold ? gold.value : 0,
 						})
 				  )
 				: dispatch(
@@ -238,6 +243,7 @@ function Setting() {
 							count: e.target.value,
 							name: name,
 							boolean: false,
+							gold: gold ? gold.value : 0,
 						})
 				  );
 		}
