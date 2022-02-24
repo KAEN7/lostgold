@@ -153,9 +153,8 @@ function Setting() {
 			toggle: boolean;
 		}
 
-		const storage: IStorage[] = JSON.parse(
-			localStorage.getItem("matarialList")
-		);
+		let temp: string | null = localStorage.getItem("matarialList");
+		const storage: IStorage[] = temp && JSON.parse(temp);
 		storage
 			? setMatarialList(storage)
 			: localStorage.setItem("matarialList", JSON.stringify(matarialList));

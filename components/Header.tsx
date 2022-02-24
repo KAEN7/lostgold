@@ -16,6 +16,7 @@ const HeaderSection = styled.header`
 `;
 
 interface IHeaderBtnType {
+	// color?: undefined & boolean;
 	color?: any;
 }
 
@@ -38,27 +39,16 @@ interface IHeader {
 
 function Header({ title }: IHeader) {
 	const list = ["Home", "Gold", "Setting"];
-	const [isBoxSelect, setBoxSelect] = useState([true, false, false]);
-
-	// 포커스 된 문구 true로 변경
-	const focusHandler = useCallback((index: number) => {
-		const newArr = Array(list.length).fill(false);
-		newArr[index] = true;
-		setBoxSelect(newArr);
-	}, []);
 
 	return (
 		<HeaderSection>
 			{list.map((el, index) => (
-				<Link href={el === "Home" ? "/" : el.toLowerCase()} passHref>
-					<HeaderBtn
-						key={`header${index}`}
-						// color={isBoxSelect[index]}
-						color={title === el.toLowerCase()}
-						onClick={() => focusHandler(index)}
-					>
-						{el}
-					</HeaderBtn>
+				<Link
+					key={`header${index}`}
+					href={el === "Home" ? "/" : el.toLowerCase()}
+					passHref
+				>
+					<HeaderBtn color={title === el.toLowerCase()}>{el}</HeaderBtn>
 				</Link>
 			))}
 		</HeaderSection>

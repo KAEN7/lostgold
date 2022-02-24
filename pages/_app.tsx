@@ -10,7 +10,7 @@ import { persistedReducer } from "../redux/index";
 import { DefaultSeo } from "next-seo";
 import { Provider } from "react-redux";
 
-const AppSection = styled.body`
+const AppSection = styled.section`
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;

@@ -23,6 +23,7 @@ const CheckTitle = styled.form`
 `;
 
 interface ICheckItem {
+	// color?: boolean;
 	color?: any;
 }
 

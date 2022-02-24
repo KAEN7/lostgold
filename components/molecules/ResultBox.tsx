@@ -87,8 +87,6 @@ const ResultBox: React.FC<IResultBox> = () => {
 	const month =
 		week.length !== 0 ? week.reduce((a: number, c: number) => a + c) : 0;
 
-	console.log(user);
-
 	return (
 		<ResultSection>
 			<ResultList>
