@@ -2,7 +2,7 @@
  * 현재 명파 가격 캐릭터당 어떤 레이드 인지 지정
  */
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import ListBox from "../components/atoms/ListBox";
@@ -145,6 +145,22 @@ function Setting() {
 		{ name: "경이로운 명예의 돌파석", src: "", value: 0, toggle: true },
 	]);
 
+	useEffect(() => {
+		interface IStorage {
+			name: string;
+			src: string;
+			value: number;
+			toggle: boolean;
+		}
+
+		const storage: IStorage[] = JSON.parse(
+			localStorage.getItem("matarialList")
+		);
+		storage
+			? setMatarialList(storage)
+			: localStorage.setItem("matarialList", JSON.stringify(matarialList));
+	}, []);
+
 	// 재료 input toggle 변경
 	const onSubmitMatarial = (e: any, idx: number, boo: boolean) => {
 		const temp = matarialList.map((el, index) =>
@@ -160,6 +176,7 @@ function Setting() {
 			idx === index ? { ...el, toggle: true, value: e.target.value } : el
 		);
 		setMatarialList(temp);
+		console.log(matarialList);
 	};
 
 	// 레이드 목록
@@ -209,7 +226,7 @@ function Setting() {
 	) => {
 		e.preventDefault();
 		const gold = matarialList.find((el) => el.name === name);
-
+		console.log(gold, "gold");
 		if (title === "honorStone") {
 			check
 				? dispatch(
