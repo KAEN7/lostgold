@@ -28,7 +28,8 @@ export type RootState = ReturnType<typeof rootReducer>;
 // persist 설정
 const persistConfig = {
 	key: "root",
-	storage: storage,
+	storage,
+	whitelist: ["user"],
 };
 
 // persist 적용 리듀서
