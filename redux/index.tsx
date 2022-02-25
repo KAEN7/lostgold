@@ -46,8 +46,10 @@ const bindMiddleware = (middleware: any) => {
 	return applyMiddleware(...middleware);
 };
 
+const store = createStore(reducer, bindMiddleware([]));
+
 const initStore = () => {
-	return createStore(reducer, bindMiddleware([]));
+	return store;
 };
 
 export const wrapper = createWrapper(initStore);
