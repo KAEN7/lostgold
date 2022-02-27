@@ -19,14 +19,14 @@ const AppSection = styled.section`
 `;
 
 function MyApp({ Component, pageProps }: AppProps) {
-	// const store: any = createStore(persistedReducer);
-	// const persistor = persistStore(store);
+	const store: any = createStore(persistedReducer);
+	const persistor = persistStore(store);
 
 	// todo redux-persist 테스트용 store
-	const store: any = useStore();
+	// const store: any = useStore();
 
 	return (
-		<PersistGate persistor={store.__persistor} loading={<>loading...</>}>
+		<PersistGate persistor={persistor} loading={<>loading...</>}>
 			<AppSection>
 				<Head>
 					<title>Lost Gold |</title>
