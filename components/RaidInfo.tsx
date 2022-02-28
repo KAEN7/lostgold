@@ -134,13 +134,15 @@ const RaidInfo: React.FC<IRaidInfo> = ({
 	};
 
 	const onStoneTitleHandler = (name: string, key: string) => {
-		console.log(name, key);
 		dispatch(putStoneName({ name: key, stoneName: name, boolean: true }));
 	};
 
 	return (
 		<>
-			<h3>해당 캐릭터의 휴게 기준 재료 수급개수를 적어주세요</h3>
+			<h3>해당 캐릭터의 휴게 1수 기준 재료 수급개수를 적어주세요</h3>
+			<span>파괴석은 10개면 → 1개로 적어주세요</span>
+			<br />
+
 			<SettingBox>
 				{userData.length === 0 ? (
 					<h3>캐릭터가 없습니다 새로 추가해보세요!</h3>
