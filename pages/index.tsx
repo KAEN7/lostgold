@@ -2,8 +2,8 @@
 
 import type { NextPage } from "next";
 import Image from "next/image";
-import { useEffect } from "react";
 import styled from "styled-components";
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { flexCenterDir, pageDefault, fadeIn } from "../styles/theme";
 
@@ -31,6 +31,7 @@ const Index: NextPage = () => {
 				/>
 				<h2>내 한달 골드 수입을 한눈에 확인해보세요</h2>
 			</HomeTitle>
+			<Footer />
 		</HomeSection>
 	);
 };
