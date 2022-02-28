@@ -1,5 +1,5 @@
 /* Setting 페이지
- * 현재 명파 가격 캐릭터당 어떤 레이드 인지 지정
+ * 현재 명파 가격 캐릭터당 어떤 레이드인지 지정
  */
 
 import { useEffect, useState } from "react";
@@ -17,6 +17,7 @@ import {
 	putHonerStoneName,
 	putStoneName,
 } from "../redux/modules/user";
+import MatarialInfo from "../components/MatarialInfo";
 
 const SettingSection = styled.header`
 	${pageDefault}
@@ -160,24 +161,6 @@ function Setting() {
 			: localStorage.setItem("matarialList", JSON.stringify(matarialList));
 	}, []);
 
-	// 재료 input toggle 변경
-	const onSubmitMatarial = (e: any, idx: number, boo: boolean) => {
-		const temp = matarialList.map((el, index) =>
-			idx === index ? { ...el, toggle: boo } : el
-		);
-		setMatarialList(temp);
-		e.preventDefault();
-	};
-
-	// 재료 input value 변경
-	const onChangeMatarial = (e: any, idx: number) => {
-		const temp = matarialList.map((el, index) =>
-			idx === index ? { ...el, toggle: true, value: e.target.value } : el
-		);
-		setMatarialList(temp);
-		console.log(matarialList);
-	};
-
 	// 레이드 목록
 	const raidList = [
 		{ name: "우르닐" },
@@ -205,6 +188,11 @@ function Setting() {
 		{ name: "칼엘리고스" },
 		{ name: "하누마탄" },
 	];
+
+	// 재료 리스트 핸들러
+	const onMatarialHandler = (data: Array<any>) => {
+		setMatarialList(data);
+	};
 
 	// toggle true 변경 핸들러
 	const onToggleHandler = (charName: string) => {
@@ -267,7 +255,6 @@ function Setting() {
 
 	// 재료명 변경 핸들러
 	const onHonorStoneTitleHandler = (name: string, key: string) => {
-		console.log(name, key);
 		dispatch(putHonerStoneName({ name: key, stoneName: name, boolean: true }));
 	};
 
@@ -315,9 +302,11 @@ function Setting() {
 					})
 			  ),
 			  alert("저장되었습니다"))
-			: alert(
+			: sameName
+			? alert(
 					"동일한 캐릭터 이름이 이미 존재하거나\n캐릭터명이 입력되지 않았습니다"
-			  );
+			  )
+			: alert("저장되었습니다");
 
 		// 기본값 초기화
 		setChar({ name: "", job: "", level: 0 });
@@ -330,32 +319,12 @@ function Setting() {
 				<br />
 
 				{/* 재료 정보 */}
-				<h3>각 재료들의 판매 가격을 적어주세요</h3>
-				<SettingBox defaultStyle={true}>
-					{matarialList.map((el, idx) => (
-						<ItemBox
-							key={`item${idx}`}
-							onSubmit={(e) => onSubmitMatarial(e, idx, false)}
-						>
-							<h4 className="subTitle">{el.name}</h4>
-							{el.toggle ? (
-								<input
-									type="number"
-									className="goldInput"
-									value={el.value}
-									onChange={(e) => onChangeMatarial(e, idx)}
-								/>
-							) : (
-								<span
-									className="gold"
-									onClick={(e) => onSubmitMatarial(e, idx, true)}
-								>
-									{el.value}G
-								</span>
-							)}
-						</ItemBox>
-					))}
-				</SettingBox>
+				<MatarialInfo
+					SettingBox={SettingBox}
+					ItemBox={ItemBox}
+					matarialList={matarialList}
+					onMatarialHandler={onMatarialHandler}
+				/>
 				<br />
 
 				{/* 레이드 정보 */}

@@ -22,9 +22,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 	const store: any = createStore(persistedReducer);
 	const persistor = persistStore(store);
 
-	// todo redux-persist 테스트용 store
-	// const store: any = useStore();
-
 	return (
 		<PersistGate persistor={persistor} loading={<>loading...</>}>
 			<AppSection>
