@@ -6,7 +6,6 @@ import { wrapper } from "../redux";
 import { createStore } from "redux";
 import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
-import { persistedReducer } from "../redux";
 import { DefaultSeo } from "next-seo";
 import { Provider, useStore } from "react-redux";
 
@@ -19,11 +18,10 @@ const AppSection = styled.section`
 `;
 
 function MyApp({ Component, pageProps }: AppProps) {
-	const store: any = createStore(persistedReducer);
-	const persistor = persistStore(store);
+	const store = useStore((state) => state);
 
 	return (
-		<PersistGate persistor={persistor} loading={<>loading...</>}>
+		<PersistGate persistor={store.__persistor} loading={<>loading...</>}>
 			<AppSection>
 				<Head>
 					<title>Lost Gold |</title>
