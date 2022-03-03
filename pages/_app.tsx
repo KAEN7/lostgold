@@ -3,11 +3,9 @@ import type { AppProps } from "next/app";
 import styled, { ThemeProvider } from "styled-components";
 import Head from "next/head";
 import { wrapper } from "../redux";
-import { createStore } from "redux";
-import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
 import { DefaultSeo } from "next-seo";
-import { Provider, useStore } from "react-redux";
+import { useStore } from "react-redux";
 
 const AppSection = styled.section`
 	display: flex;
@@ -18,7 +16,7 @@ const AppSection = styled.section`
 `;
 
 function MyApp({ Component, pageProps }: AppProps) {
-	const store = useStore((state) => state);
+	const store = useStore();
 
 	return (
 		<PersistGate persistor={store.__persistor} loading={<>loading...</>}>

@@ -1,8 +1,6 @@
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import { HYDRATE, createWrapper } from "next-redux-wrapper";
-import { persistReducer, PersistConfig } from "redux-persist";
 import thunkMiddleware from "redux-thunk";
-// import storage from "redux-persist/lib/storage";
 import storage from "./sync_storage";
 import user from "./modules/user";
 
@@ -22,10 +20,8 @@ const bindMiddleware = (middleware: any) => {
 
 const makeStore = ({ isServer }) => {
 	if (isServer) {
-		//If it's on server side, create a store
 		return createStore(combinedReducer, bindMiddleware([thunkMiddleware]));
 	} else {
-		//If it's on client side, create a store which will persist
 		const { persistStore, persistReducer } = require("redux-persist");
 
 		const persistConfig = {
@@ -34,18 +30,17 @@ const makeStore = ({ isServer }) => {
 			storage,
 		};
 
-		const persistedReducer = persistReducer(persistConfig, combinedReducer); // Create a new reducer with our existing reducer
+		const persistedReducer = persistReducer(persistConfig, combinedReducer);
 
 		const store = createStore(
 			persistedReducer,
 			bindMiddleware([thunkMiddleware])
-		); // Creating the store again
+		);
 
-		store.__persistor = persistStore(store); // This creates a persistor object & push that persisted object to .__persistor, so that we can avail the persistability feature
+		store.__persistor = persistStore(store);
 
 		return store;
 	}
 };
 
-// Export the wrapper & wrap the pages/_app.js with this wrapper only
 export const wrapper = createWrapper(makeStore);
