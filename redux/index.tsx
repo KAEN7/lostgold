@@ -18,7 +18,7 @@ const bindMiddleware = (middleware: any) => {
 	return applyMiddleware(...middleware);
 };
 
-const makeStore: any = ({ isServer }) => {
+const makeStore: any = ({ isServer }: { isServer: any }) => {
 	if (isServer) {
 		return createStore(combinedReducer, bindMiddleware([thunkMiddleware]));
 	} else {
