@@ -18,21 +18,21 @@ const bindMiddleware = (middleware: any) => {
 	return applyMiddleware(...middleware);
 };
 
-const makeStore = ({ isServer }) => {
+const makeStore: any = ({ isServer }) => {
 	if (isServer) {
 		return createStore(combinedReducer, bindMiddleware([thunkMiddleware]));
 	} else {
 		const { persistStore, persistReducer } = require("redux-persist");
 
 		const persistConfig = {
-			key: "nextjs",
+			key: "root",
 			whitelist: ["user"],
 			storage,
 		};
 
 		const persistedReducer = persistReducer(persistConfig, combinedReducer);
 
-		const store = createStore(
+		const store: any = createStore(
 			persistedReducer,
 			bindMiddleware([thunkMiddleware])
 		);

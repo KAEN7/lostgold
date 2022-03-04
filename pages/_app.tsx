@@ -16,7 +16,7 @@ const AppSection = styled.section`
 `;
 
 function MyApp({ Component, pageProps }: AppProps) {
-	const store = useStore();
+	const store: any = useStore();
 
 	return (
 		<PersistGate persistor={store.__persistor} loading={<>loading...</>}>
