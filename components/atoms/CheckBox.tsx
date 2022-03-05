@@ -73,7 +73,7 @@ const CheckBox: React.FC<ICheckBox> = ({ data, flag, idx, charName }) => {
 	};
 
 	useEffect(() => {
-		setChecked(data.boolean);
+		setChecked(Boolean(data.boolean));
 	}, []);
 
 	useEffect(() => {

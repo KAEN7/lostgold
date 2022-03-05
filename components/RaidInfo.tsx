@@ -160,7 +160,7 @@ const RaidInfo: React.FC<IRaidInfo> = ({
 								</ListBox>
 							)}
 							{/* 돌파석 */}
-							{el.honorStone.boolean ? (
+							{Boolean(el.honorStone.boolean) ? (
 								<FormBox onSubmit={(e: any) => e.preventDefault()}>
 									<span
 										onClick={(e) =>
@@ -187,8 +187,9 @@ const RaidInfo: React.FC<IRaidInfo> = ({
 									{matarialList.slice(3)}
 								</ListBox>
 							)}
+
 							{/* 파괴석 */}
-							{el.stone.boolean ? (
+							{Boolean(el.stone.boolean) ? (
 								<FormBox onSubmit={(e: any) => e.preventDefault()}>
 									<span
 										onClick={(e) => onCountHandler(e, el.name, "stone", false)}
