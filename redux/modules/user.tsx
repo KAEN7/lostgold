@@ -104,7 +104,7 @@ export const user = handleActions(
 								...el.honorStone,
 								name: el.honorStone.name,
 								count: action.payload.count,
-								boolean: action.payload.boolean,
+								boolean: Boolean(action.payload.boolean),
 							},
 					  }
 					: el
@@ -119,7 +119,7 @@ export const user = handleActions(
 							honorStone: {
 								...el.honorStone,
 								name: action.payload.stoneName,
-								boolean: action.payload.boolean,
+								boolean: Boolean(action.payload.boolean),
 								gold: action.payload.gold,
 							},
 					  }
@@ -136,7 +136,7 @@ export const user = handleActions(
 								...el.stone,
 								name: el.stone.name,
 								count: action.payload.count,
-								boolean: action.payload.boolean,
+								boolean: Boolean(action.payload.boolean),
 								gold: action.payload.gold,
 							},
 					  }
@@ -152,7 +152,7 @@ export const user = handleActions(
 							stone: {
 								...el.stone,
 								name: action.payload.stoneName,
-								boolean: action.payload.boolean,
+								boolean: Boolean(action.payload.boolean),
 							},
 					  }
 					: el
@@ -181,7 +181,10 @@ export const user = handleActions(
 			userData: state.userData.map((el: any) =>
 				el.name === action.payload.charName
 					? action.payload.flag === "raid"
-						? { ...el, raid: { ...el.raid, boolean: action.payload.boolean } }
+						? {
+								...el,
+								raid: { ...el.raid, boolean: Boolean(action.payload.boolean) },
+						  }
 						: {
 								...el,
 								list: el.list.map((data: object, idx: number) =>
@@ -189,7 +192,7 @@ export const user = handleActions(
 										? {
 												name: action.payload.name,
 												gold: action.payload.gold,
-												boolean: action.payload.boolean,
+												boolean: Boolean(action.payload.boolean),
 										  }
 										: data
 								),

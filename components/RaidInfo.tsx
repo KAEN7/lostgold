@@ -88,7 +88,7 @@ const RaidInfo: React.FC<IRaidInfo> = ({
 	) => {
 		e.preventDefault();
 		const gold = matarialList.find((el: any) => el.name === name);
-		console.log(gold, "gold");
+
 		if (title === "honorStone") {
 			check
 				? dispatch(

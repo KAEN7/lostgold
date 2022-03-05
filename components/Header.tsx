@@ -16,7 +16,6 @@ const HeaderSection = styled.header`
 `;
 
 interface IHeaderBtnType {
-	// color?: undefined & boolean;
 	color: any;
 }
 

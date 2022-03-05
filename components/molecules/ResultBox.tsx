@@ -58,8 +58,7 @@ const BodyItem = styled.span`
 `;
 
 export interface IResultBox {
-	// user?: Array<object>;
-	user?: any;
+	user: any;
 }
 
 const ResultBox: React.FC<IResultBox> = () => {
