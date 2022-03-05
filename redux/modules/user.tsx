@@ -73,7 +73,7 @@ export const user = handleActions(
 							...el,
 							raid: {
 								name: action.payload.name,
-								toggle: action.payload.toggle,
+								toggle: Boolean(action.payload.toggle),
 							},
 					  }
 					: el
@@ -87,7 +87,7 @@ export const user = handleActions(
 							...el,
 							raid: {
 								name: el.raid.name,
-								toggle: action.payload.toggle,
+								toggle: Boolean(action.payload.toggle),
 							},
 					  }
 					: el

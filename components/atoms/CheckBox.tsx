@@ -86,7 +86,7 @@ const CheckBox: React.FC<ICheckBox> = ({ data, flag, idx, charName }) => {
 				charName: charName,
 				name: titleValue,
 				gold: gold && gold.gold,
-				boolean: checked,
+				boolean: Boolean(checked),
 				idx: idx,
 				flag: flag,
 			})
