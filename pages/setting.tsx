@@ -123,21 +123,6 @@ function Setting() {
 		{ name: "경이로운 명예의 돌파석", src: "", value: 0, toggle: true },
 	]);
 
-	useEffect(() => {
-		interface IStorage {
-			name: string;
-			src: string;
-			value: number;
-			toggle: boolean;
-		}
-
-		let temp: string | null = localStorage.getItem("matarialList");
-		const storage: IStorage[] = temp && JSON.parse(temp);
-		storage
-			? setMatarialList(storage)
-			: localStorage.setItem("matarialList", JSON.stringify(matarialList));
-	}, []);
-
 	// 재료 리스트 핸들러
 	const onMatarialHandler = (data: Array<any>) => {
 		setMatarialList(data);

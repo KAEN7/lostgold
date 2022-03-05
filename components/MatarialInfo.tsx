@@ -28,7 +28,6 @@ const MatarialInfo: React.FunctionComponent<IMatarialInfo> = ({
 			idx === index ? { ...el, toggle: true, value: e.target.value } : el
 		);
 		onMatarialHandler(temp);
-		console.log(matarialList);
 	};
 
 	return (
