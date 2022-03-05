@@ -28,13 +28,13 @@ const HeaderBtn = styled.button<IHeaderBtnType>`
 	margin: 0.7rem;
 	border-right: 0.1rem solid ${color.point};
 	cursor: pointer;
-	font-size: ${(props) => props.color && "0.9rem"};
-	font-weight: ${(props) => (props.color ? "bold" : "normal")};
-	color: ${(props) => (props.color ? color.white : color.gray)};
+	font-size: ${(props) => Boolean(props.color) && "0.9rem"};
+	font-weight: ${(props) => (Boolean(props.color) ? "bold" : "normal")};
+	color: ${(props) => (Boolean(props.color) ? color.white : color.gray)};
 `;
 
 interface IHeader {
-	title: string;
+	title?: string;
 }
 
 function Header({ title }: IHeader) {
@@ -48,7 +48,7 @@ function Header({ title }: IHeader) {
 					href={el === "Home" ? "/" : el.toLowerCase()}
 					passHref
 				>
-					<HeaderBtn color={title === el.toLowerCase()}>{el}</HeaderBtn>
+					<HeaderBtn color={String(title === el.toLowerCase())}>{el}</HeaderBtn>
 				</Link>
 			))}
 		</HeaderSection>
