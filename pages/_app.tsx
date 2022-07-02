@@ -1,16 +1,23 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import styled, { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 import Head from "next/head";
 import { DefaultSeo } from "next-seo";
 import { RecoilRoot } from "recoil";
 
+import { color } from "../styles/theme";
+import Navigator from "../components/Navigator";
+import Aside from "../components/Aside";
+
 const AppSection = styled.section`
 	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	width: 100vw;
-	height: 100vh;
+	justify-content: center;
+	align-items: center;
+	width: 95vw;
+	height: 95vh;
+	background: ${color.default};
+	overflow: hidden;
+	border-radius: 46px;
 `;
 
 function MyApp({ Component, pageProps }: any) {
@@ -35,7 +42,9 @@ function MyApp({ Component, pageProps }: any) {
 				}}
 			/>
 			<RecoilRoot>
+				<Navigator />
 				<Component {...pageProps} />
+				<Aside />
 			</RecoilRoot>
 		</AppSection>
 	);

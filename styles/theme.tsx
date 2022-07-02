@@ -35,15 +35,20 @@ export const color = {
 };
 
 // font
-export const title = css`
+export const titles = css`
 	font-family: "Raleway";
+	font-style: normal;
 	font-weight: 700;
 	font-size: 64.96px;
+	line-height: 76px;
 `;
 
 export const description = css`
 	font-family: "Raleway";
+	font-style: normal;
 	font-size: 27.01px;
+	font-weight: 400;
+	line-height: 32px;
 `;
 
 // flex 디자인
@@ -61,13 +66,13 @@ export const flexCenterDir = css`
 
 export const pageSetting = css`
 	display: flex;
-	align-items: center;
 	flex-direction: column;
-	width: 100vw;
-	height: 100vh;
-	box-sizing: border-box;
-	padding: 3rem;
-	overflow-y: auto;
+	justify-content: flex-start;
+	width: 100%;
+	height: 95%;
+	margin-right: 36px;
+	background: ${color.lightDefault};
+	border-radius: 69px;
 
 	::-webkit-scrollbar {
 		display: none;
@@ -105,20 +110,16 @@ export const scrollBar = css`
 	background-color: rgba(0, 0, 0, 0.8);
 	margin-right: 50px;
 
-	/* 스크롤바 설정*/
 	&::-webkit-scrollbar {
 		width: 6px;
 	}
 
-	/* 스크롤바 막대 설정*/
 	&::-webkit-scrollbar-thumb {
 		height: 17%;
 		background-color: rgba(255, 255, 255, 1);
-		/* 스크롤바 둥글게 설정    */
 		border-radius: 10px;
 	}
 
-	/* 스크롤바 뒷 배경 설정*/
 	&::-webkit-scrollbar-track {
 		background-color: rgba(0, 0, 0, 0);
 	}
@@ -126,16 +127,14 @@ export const scrollBar = css`
 
 // 페이지 기본 스타일
 export const pageDefault = css`
-	${flexCenter}
-
-	margin-top: 6vh;
-	height: 94vh;
+	height: 100vh;
+	width: 100vw;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	align-items: center;
 	background: ${color.default};
-	overflow-x: hidden;
+	padding: 1rem;
+	overflow: hidden;
 `;
 
 export default theme;

@@ -1,14 +1,14 @@
 import { atom, selector } from "recoil";
 
-export const tempState = atom({
-	key: "tempState",
-	default: 0,
+export const toggleAside = atom({
+	key: "toggleAside",
+	default: true,
 });
 
-export const tempSelector = selector({
-	key: "tempSelector",
+export const toggleAsideSelector = selector({
+	key: "toggleAsideSelector",
 	get: ({ get }) => {
-		const temp = get(tempState);
+		const temp = get(toggleAside);
 		return temp;
 	},
 });
