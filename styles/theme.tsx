@@ -25,12 +25,26 @@ const theme = {
 
 // color
 export const color = {
-	white: "#ffffff",
-	black: "#2c2c2c",
-	gray: "#c9c9c9",
-	point: "#ffd700",
-	darkPoint: "#8a7b23",
+	default: "#ffffff",
+	lightDefault: "#EDEEF5",
+	font: "#403F43",
+	lightFont: "#BCBBBF",
+	darkPoint: "#3563DE",
+	point: "#6A90F9",
+	lightPoint: "#A7C0FD",
 };
+
+// font
+export const title = css`
+	font-family: "Raleway";
+	font-weight: 700;
+	font-size: 64.96px;
+`;
+
+export const description = css`
+	font-family: "Raleway";
+	font-size: 27.01px;
+`;
 
 // flex 디자인
 export const flexCenter = css`
@@ -120,7 +134,7 @@ export const pageDefault = css`
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
-	background: ${color.black};
+	background: ${color.default};
 	overflow-x: hidden;
 `;
 
