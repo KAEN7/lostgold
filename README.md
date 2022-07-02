@@ -4,6 +4,8 @@
 
 스마일게이트 RPG 로스트아크 유틸리티 사이트입니다
 
+[Figma](https://www.figma.com/file/XdxHMvEiC3jXSA8icEYpIq/LostGold?node-id=102%3A9)
+
 ## 스택
 - Next.js
 - TypeScript
