@@ -13,7 +13,11 @@ const Navigator = () => {
 
 			<NavList>
 				{navList.map((item) => (
-					<Link href={`${item === "Dashboard" ? "/" : "/gold"}`} passHref>
+					<Link
+						href={`${item === "Dashboard" ? "/" : `/${item}`}`}
+						passHref
+						key={item}
+					>
 						<NavItem>
 							<img
 								src={`/image/${item}Icon.svg`}

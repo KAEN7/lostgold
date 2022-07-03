@@ -1,7 +1,7 @@
 import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
 import { toggleAside } from "../store";
-import { pageDefault, color } from "../styles/theme";
+import { pageDefault, color, titles } from "../styles/theme";
 
 const Aside = () => {
 	const [toggle, setToggle] = useRecoilState(toggleAside);
@@ -24,6 +24,13 @@ const Aside = () => {
 					</Buttons>
 				</div>
 			</AsideHeader>
+
+			<AsideBody>
+				<span>Your Weekly</span>
+				<span>Gold Amount</span>
+
+				<div></div>
+			</AsideBody>
 		</AsideSection>
 	);
 };
@@ -51,6 +58,7 @@ const AsideHeader = styled.div`
 	justify-content: space-between;
 	width: 100%;
 	margin-top: 36px;
+	margin-bottom: 68px;
 
 	.profile {
 		width: 78px;
@@ -64,6 +72,28 @@ const AsideHeader = styled.div`
 	}
 `;
 
+const AsideBody = styled.div`
+	display: flex;
+	flex-direction: column;
+
+	span {
+		${titles}
+
+		font-size: 39px;
+		line-height: 47px;
+		letter-spacing: 0.05em;
+		color: ${color.font};
+	}
+
+	div {
+		margin-top: 54px;
+		width: 406px;
+		height: 288px;
+		background: ${color.lightDefault};
+		border-radius: 34px;
+	}
+`;
+
 // todo 스토리북으로 뺄거
 const Buttons = styled.button`
 	width: 56px;
@@ -72,6 +102,7 @@ const Buttons = styled.button`
 	background: ${color.default};
 	box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.25);
 	margin-right: 20px;
+	cursor: pointer;
 `;
 
 export default Aside;

@@ -1,35 +1,8 @@
 import type { NextPage } from "next";
-import { useRecoilState } from "recoil";
-import styled from "styled-components";
-import { toggleAside } from "../store";
-import { pageSetting, titles, color } from "../styles/theme";
+import Main from "../components/organisms/Main";
 
 const Index: NextPage = () => {
-	const [toggle, setToggle] = useRecoilState(toggleAside);
-
-	return (
-		<HomeSection toggle={toggle}>
-			<span>Dashboard</span>
-		</HomeSection>
-	);
+	return <Main title={"Dashboard"}></Main>;
 };
-
-interface IHomeSection {
-	toggle: boolean;
-}
-
-const HomeSection = styled.section<IHomeSection>`
-	${pageSetting}
-
-	margin-right: ${(props) => props.toggle && "523px"};
-
-	span {
-		${titles}
-
-		color: ${color.font};
-		margin-top: 85px;
-		margin-left: 81px;
-	}
-`;
 
 export default Index;

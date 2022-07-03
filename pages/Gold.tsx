@@ -1,13 +1,8 @@
 import styled from "styled-components";
-import { pageDefault, color } from "../styles/theme";
+import Main from "../components/organisms/Main";
 
 const Gold = () => {
-	return <GoldSection></GoldSection>;
+	return <Main title={"Gold"}></Main>;
 };
-
-const GoldSection = styled.aside`
-	flex: 1;
-	background: ${color.default};
-`;
 
 export default Gold;
