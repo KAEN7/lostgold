@@ -19,16 +19,16 @@ const Main: React.FC<IMain> = ({ title }) => {
 			</MainHeader>
 
 			<MainBody>
+				<Box width={toggle ? 34.4375 : 34.4375 * 1.5} height={19.3125}></Box>
+				<Box width={toggle ? 17.1875 : 17.1875 * 1.5} height={19.3125}></Box>
+			</MainBody>
+			<MainBody>
 				<Box
 					width={toggle ? 31.3125 : 31.3125 * 1.5}
 					height={14}
 					point={true}
 				></Box>
 				<Box width={toggle ? 27 : 27 * 1.5} height={17.5625}></Box>
-			</MainBody>
-			<MainBody>
-				<Box width={toggle ? 34.4375 : 34.4375 * 1.5} height={19.3125}></Box>
-				<Box width={toggle ? 17.1875 : 17.1875 * 1.5} height={19.3125}></Box>
 			</MainBody>
 		</MainSection>
 	);

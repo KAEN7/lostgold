@@ -1,10 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 import { description, color } from "../styles/theme";
 
 const Navigator = () => {
 	const navList = ["Dashboard", "Gold"];
+
+	const router = useRouter();
+	console.log("router", router.asPath);
 
 	return (
 		<NavigatorSection>
@@ -14,15 +18,25 @@ const Navigator = () => {
 			<NavList>
 				{navList.map((item) => (
 					<Link
-						href={`${item === "Dashboard" ? "/" : `/${item}`}`}
+						href={`/${item === "Dashboard" ? "" : item}`}
 						passHref
 						key={item}
 					>
-						<NavItem>
-							<img
-								src={`/image/${item}Icon.svg`}
-								style={{ marginRight: "18px" }}
-							/>
+						<NavItem
+							router={router.asPath === `/${item === "Dashboard" ? "" : item}`}
+						>
+							{router.asPath === `/${item === "Dashboard" ? "" : item}` ? (
+								<img
+									src={`/image/${item}Icon.svg`}
+									style={{ marginRight: "18px" }}
+								/>
+							) : (
+								<img
+									src={`/image/${item}OffIcon.svg`}
+									style={{ marginRight: "18px" }}
+								/>
+							)}
+
 							<span>{item}</span>
 						</NavItem>
 					</Link>
@@ -45,7 +59,7 @@ const NavigatorSection = styled.nav`
 		${description}
 
 		font-size: 27.01px;
-		color: ${color.lightFont};
+		color: ${color.default};
 		margin-top: 43px;
 		margin-bottom: 117px;
 	}
@@ -65,16 +79,23 @@ const NavList = styled.ul`
 	padding: 0;
 `;
 
-const NavItem = styled.a`
+interface INavItem {
+	router: boolean;
+}
+
+const NavItem = styled.a<INavItem>`
 	display: flex;
 	align-items: flex-end;
 	margin-bottom: 29px;
+
+	img {
+	}
 
 	span {
 		${description}
 
 		font-size: 24.9638px;
-		color: ${color.darkPoint};
+		color: ${(props) => (props.router ? color.darkPoint : color.lightFont)};
 	}
 `;
 

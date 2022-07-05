@@ -28,8 +28,6 @@ const Aside = () => {
 			<AsideBody>
 				<span>Your Weekly</span>
 				<span>Gold Amount</span>
-
-				<div></div>
 			</AsideBody>
 		</AsideSection>
 	);
@@ -83,14 +81,6 @@ const AsideBody = styled.div`
 		line-height: 47px;
 		letter-spacing: 0.05em;
 		color: ${color.font};
-	}
-
-	div {
-		margin-top: 54px;
-		width: 406px;
-		height: 288px;
-		background: ${color.lightDefault};
-		border-radius: 34px;
 	}
 `;
 
