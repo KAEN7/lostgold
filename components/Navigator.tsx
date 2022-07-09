@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { description, color } from "../styles/theme";
+import Logo from "./Logo";
 
 const Navigator = () => {
 	const navList = ["Dashboard", "Gold"];
@@ -12,7 +13,9 @@ const Navigator = () => {
 
 	return (
 		<NavigatorSection>
-			<Logo></Logo>
+			<LogoBox>
+				<Logo></Logo>
+			</LogoBox>
 			<h1>Lost Gold</h1>
 
 			<NavList>
@@ -65,7 +68,7 @@ const NavigatorSection = styled.nav`
 	}
 `;
 
-const Logo = styled.button`
+const LogoBox = styled.button`
 	width: 78px;
 	height: 78px;
 	background: ${color.point};
