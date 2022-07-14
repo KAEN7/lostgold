@@ -67,10 +67,10 @@ export const flexCenterDir = css`
 export const pageSetting = css`
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-start;
-	width: 100%;
+	justify-content: center;
+	align-items: center;
 	height: 95%;
-	margin-right: 36px;
+
 	background: ${color.lightDefault};
 	border-radius: 69px;
 

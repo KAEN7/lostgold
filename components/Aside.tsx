@@ -2,6 +2,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
 import { toggleAside } from "../store";
 import { pageDefault, color, titles } from "../styles/theme";
+import ClassList from "./ClassList";
 
 const Aside = () => {
 	const [toggle, setToggle] = useRecoilState(toggleAside);
@@ -26,8 +27,9 @@ const Aside = () => {
 			</AsideHeader>
 
 			<AsideBody>
-				<span>Your Weekly</span>
-				<span>Gold Amount</span>
+				<span>Weekly Gold Amount</span>
+
+				<ClassList></ClassList>
 			</AsideBody>
 		</AsideSection>
 	);
@@ -40,14 +42,13 @@ interface IAsideSection {
 const AsideSection = styled.aside<IAsideSection>`
 	display: ${(props) => (props.toggle ? "flex" : "none")};
 	flex-direction: column;
-	position: absolute;
+	align-items: flex-start;
 	right: 0;
 	background: ${color.default};
+	flex: 1;
 	height: 95vh;
-	width: 523px;
-	border-radius: 0px 46px 60px 0px;
-	padding-left: 43px;
-	margin-right: 3rem;
+	border-radius: 0rem 2.875rem 3.75rem 0rem;
+	padding-right: 1.6875rem;
 	box-sizing: border-box;
 `;
 
@@ -55,14 +56,14 @@ const AsideHeader = styled.div`
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
-	margin-top: 36px;
-	margin-bottom: 68px;
+	margin-top: 2.25rem;
+	margin-bottom: 4.25rem;
 
 	.profile {
-		width: 78px;
-		height: 78px;
+		width: 4.875rem;
+		height: 4.875rem;
 		background: #d9d9d9;
-		border-radius: 50%50%;
+		border-radius: 50% 50%;
 	}
 
 	.buttonBox {
@@ -73,12 +74,13 @@ const AsideHeader = styled.div`
 const AsideBody = styled.div`
 	display: flex;
 	flex-direction: column;
+	height: 100%;
 
 	span {
 		${titles}
 
-		font-size: 39px;
-		line-height: 47px;
+		font-size: 2.4375rem;
+		line-height: 2.9375rem;
 		letter-spacing: 0.05em;
 		color: ${color.font};
 	}
@@ -86,12 +88,12 @@ const AsideBody = styled.div`
 
 // todo 스토리북으로 뺄거
 const Buttons = styled.button`
-	width: 56px;
-	height: 56px;
+	width: 3.5rem;
+	height: 3.5rem;
 	border-radius: 50%;
 	background: ${color.default};
-	box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.25);
-	margin-right: 20px;
+	box-shadow: 0.0625rem 0.125rem 0.3125rem rgba(0, 0, 0, 0.25);
+	margin-right: 1.25rem;
 	cursor: pointer;
 `;
 

@@ -44,7 +44,6 @@ function MyApp({ Component, pageProps }: any) {
 			<RecoilRoot>
 				<Navigator />
 				<Component {...pageProps} />
-				<Aside />
 			</RecoilRoot>
 		</AppSection>
 	);

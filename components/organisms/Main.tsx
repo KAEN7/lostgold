@@ -1,8 +1,8 @@
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { toggleAside } from "../../store";
-import { color, pageSetting, titles } from "../../styles/theme";
-import Box from "../atoms/Box";
+import { color, flexCenter, pageSetting, titles } from "../../styles/theme";
+import Aside from "../Aside";
 
 interface IMain {
 	title: string;
@@ -12,45 +12,51 @@ const Main: React.FC<IMain> = ({ title }) => {
 	const [toggle, setToggle] = useRecoilState(toggleAside);
 
 	return (
-		<MainSection toggle={toggle}>
-			<MainHeader>
-				<span>{title}</span>
-				{!toggle && <button onClick={() => setToggle(true)}></button>}
-			</MainHeader>
+		<MainSection>
+			<MainBox toggle={toggle}>
+				<MainHeader>
+					<span>{title}</span>
+					{!toggle && <button onClick={() => setToggle(true)}></button>}
+				</MainHeader>
 
-			<MainBody>
-				<Box width={toggle ? 34.4375 : 34.4375 * 1.5} height={19.3125}></Box>
-				<Box width={toggle ? 17.1875 : 17.1875 * 1.5} height={19.3125}></Box>
-			</MainBody>
-			<MainBody>
-				<Box
-					width={toggle ? 31.3125 : 31.3125 * 1.5}
-					height={14}
-					point={true}
-				></Box>
-				<Box width={toggle ? 27 : 27 * 1.5} height={17.5625}></Box>
-			</MainBody>
+				<MainRow>
+					<Box flex={4} height={19.3125}></Box>
+					<Box flex={5} height={17.3125}></Box>
+				</MainRow>
+				<MainRow>
+					<Box flex={3} height={16} point={true}></Box>
+					<Box flex={2} height={17.5625}></Box>
+				</MainRow>
+			</MainBox>
+			<Aside />
 		</MainSection>
 	);
 };
-
 interface IMainSection {
 	toggle: boolean;
 }
 
-const MainSection = styled.aside<IMainSection>`
+const MainSection = styled.main`
+	${flexCenter}
+
+	width: 100%;
+	height: 100%;
+`;
+
+const MainBox = styled.div<IMainSection>`
 	${pageSetting}
 
-	margin-right: ${(props) => props.toggle && "32.6875rem"};
+	flex: 3;
 	box-sizing: border-box;
+	margin-right: 2.6875rem;
 `;
 
 const MainHeader = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	margin-bottom: 1.25rem;
 	width: 100%;
-	margin-bottom: 20px;
 
 	span {
 		${titles}
@@ -69,15 +75,35 @@ const MainHeader = styled.div`
 	}
 `;
 
-const MainBody = styled.div`
+const MainRow = styled.div`
 	display: flex;
-	justify-content: flex-end;
-	position: relative;
 	width: 100%;
-	left: -30px;
-	margin-bottom: 44px;
-	padding-right: 72px;
+`;
+
+interface IBoxSection {
+	flex: number;
+	height: number;
+	point?: boolean;
+}
+
+const Box = styled.div<IBoxSection>`
+	display: flex;
+	flex-direction: column;
+	background: ${(props) => (props.point ? color.lightPoint : color.default)};
+	border-radius: 2.625rem;
+	flex: ${(props) => props.flex};
+	height: ${(props) => `${props.height}rem`};
+	box-shadow: ${(props) =>
+		props.point && "0rem .75rem 1.9375rem rgba(0, 0, 0, 0.25)"};
+	position: ${(props) => props.point && "relative"};
+	top: ${(props) => props.point && "1.25rem"};
+	left: ${(props) => props.point && "-1.25rem"};
 	box-sizing: border-box;
+	margin: 10px 20px;
+
+	&:first-child {
+		left: -2.75rem;
+	}
 `;
 
 export default Main;

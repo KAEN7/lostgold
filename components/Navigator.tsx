@@ -13,9 +13,7 @@ const Navigator = () => {
 
 	return (
 		<NavigatorSection>
-			<LogoBox>
-				<Logo></Logo>
-			</LogoBox>
+			<LogoBox>{/* <Logo></Logo> */}</LogoBox>
 			<h1>Lost Gold</h1>
 
 			<NavList>
@@ -31,12 +29,12 @@ const Navigator = () => {
 							{router.asPath === `/${item === "Dashboard" ? "" : item}` ? (
 								<img
 									src={`/image/${item}Icon.svg`}
-									style={{ marginRight: "18px" }}
+									style={{ marginRight: "1.125rem" }}
 								/>
 							) : (
 								<img
 									src={`/image/${item}OffIcon.svg`}
-									style={{ marginRight: "18px" }}
+									style={{ marginRight: "1.125rem" }}
 								/>
 							)}
 
@@ -54,25 +52,25 @@ const NavigatorSection = styled.nav`
 	flex-direction: column;
 	align-items: flex-start;
 	height: 100%;
-	padding: 36px;
+	padding: 2.25rem;
 	box-sizing: border-box;
 	width: 20rem;
 
 	h1 {
 		${description}
 
-		font-size: 27.01px;
+		font-size: 1.6881rem;
 		color: ${color.default};
-		margin-top: 43px;
-		margin-bottom: 117px;
+		margin-top: 2.6875rem;
+		margin-bottom: 7.3125rem;
 	}
 `;
 
 const LogoBox = styled.button`
-	width: 78px;
-	height: 78px;
+	width: 4.875rem;
+	height: 4.875rem;
 	background: ${color.point};
-	border-radius: 15px;
+	border-radius: 0.9375rem;
 `;
 
 const NavList = styled.ul`
@@ -89,7 +87,7 @@ interface INavItem {
 const NavItem = styled.a<INavItem>`
 	display: flex;
 	align-items: flex-end;
-	margin-bottom: 29px;
+	margin-bottom: 1.8125rem;
 
 	img {
 	}
@@ -97,7 +95,7 @@ const NavItem = styled.a<INavItem>`
 	span {
 		${description}
 
-		font-size: 24.9638px;
+		font-size: 1.5602rem;
 		color: ${(props) => (props.router ? color.darkPoint : color.lightFont)};
 	}
 `;
