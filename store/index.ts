@@ -12,3 +12,8 @@ export const toggleAsideSelector = selector({
 		return temp;
 	},
 });
+
+export const searchMainClass = atom({
+	key: "searchMainClass",
+	default: "",
+});

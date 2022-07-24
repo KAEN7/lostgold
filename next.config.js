@@ -11,3 +11,21 @@ module.exports = {
 		],
 	},
 };
+
+const nextConfig = {
+	reactStrictMode: true,
+	webpack5: true,
+	webpack: (config, { isServer }) => {
+		config.resolve.fallback = { fs: false };
+
+		// if (!isServer) {
+		// 	config.node = {
+		// 		net: "empty",
+		// 	};
+		// }
+
+		return config;
+	},
+};
+
+module.exports = nextConfig;

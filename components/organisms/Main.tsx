@@ -1,7 +1,15 @@
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
-import { toggleAside } from "../../store";
-import { color, flexCenter, pageSetting, titles } from "../../styles/theme";
+import search from "../../lib/search";
+import { searchMainClass, toggleAside } from "../../store";
+import {
+	color,
+	description,
+	fadeIn,
+	flexCenter,
+	pageSetting,
+	titles,
+} from "../../styles/theme";
 import Aside from "../Aside";
 
 interface IMain {
@@ -10,6 +18,7 @@ interface IMain {
 
 const Main: React.FC<IMain> = ({ title }) => {
 	const [toggle, setToggle] = useRecoilState(toggleAside);
+	const [text, setText] = useRecoilState(searchMainClass);
 
 	return (
 		<MainSection>
@@ -20,12 +29,26 @@ const Main: React.FC<IMain> = ({ title }) => {
 				</MainHeader>
 
 				<MainRow>
-					<Box flex={4} height={19.3125}></Box>
-					<Box flex={5} height={17.3125}></Box>
+					<Box flex={6} height={19.3125}></Box>
+					<Box flex={4} height={17.3125}></Box>
 				</MainRow>
 				<MainRow>
-					<Box flex={3} height={16} point={true}></Box>
-					<Box flex={2} height={17.5625}></Box>
+					<Box
+						flex={3.5}
+						height={16}
+						point={true}
+						onSubmit={async (e) => await search(e, text)}
+					>
+						<img className="search" src="/image/search.svg" />
+						<input
+							className="searchBar"
+							placeholder="캐릭터 검색..."
+							type="form"
+							autoFocus
+							onChange={(e) => setText(e.target.value)}
+						/>
+					</Box>
+					<Box flex={4} height={17.5625}></Box>
 				</MainRow>
 			</MainBox>
 			<Aside />
@@ -86,9 +109,11 @@ interface IBoxSection {
 	point?: boolean;
 }
 
-const Box = styled.div<IBoxSection>`
+const Box = styled.form<IBoxSection>`
 	display: flex;
-	flex-direction: column;
+	flex-direction: ${(props) => (props.point ? "row" : "column")};
+	justify-content: ${(props) => props.point && "center"};
+	align-items: ${(props) => props.point && "center"};
 	background: ${(props) => (props.point ? color.lightPoint : color.default)};
 	border-radius: 2.625rem;
 	flex: ${(props) => props.flex};
@@ -100,9 +125,28 @@ const Box = styled.div<IBoxSection>`
 	left: ${(props) => props.point && "-1.25rem"};
 	box-sizing: border-box;
 	margin: 10px 20px;
+	${fadeIn}
 
 	&:first-child {
 		left: -2.75rem;
+	}
+
+	.search {
+		width: 55.14px;
+		height: 55.14px;
+	}
+
+	.searchBar {
+		${description}
+
+		font-weight: 600;
+		font-size: 38px;
+		line-height: 46px;
+		color: ${color.font};
+		outline: none;
+		border: none;
+		background: none;
+		width: 70%;
 	}
 `;
 

@@ -104,20 +104,17 @@ export const fadeIn = css`
 export const scrollBar = css`
 	padding: 0px 13px 0px 13px;
 	overflow-y: scroll;
-	height: 200px;
 	box-sizing: border-box;
-	color: white;
-	background-color: rgba(0, 0, 0, 0.8);
 	margin-right: 50px;
 
 	&::-webkit-scrollbar {
-		width: 6px;
+		width: 10px;
 	}
 
 	&::-webkit-scrollbar-thumb {
 		height: 17%;
-		background-color: rgba(255, 255, 255, 1);
-		border-radius: 10px;
+		background: #d9d9d9;
+		border-radius: 30px;
 	}
 
 	&::-webkit-scrollbar-track {

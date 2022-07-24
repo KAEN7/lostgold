@@ -17,9 +17,9 @@ const Aside = () => {
 				<div className="profile"></div>
 
 				<div className="buttonBox">
-					<Buttons>
+					{/* <Buttons>
 						<img src="/image/setting.svg" />
-					</Buttons>
+					</Buttons> */}
 					<Buttons onClick={() => setToggleHandler()}>
 						<img src="/image/close.svg" />
 					</Buttons>
@@ -27,7 +27,7 @@ const Aside = () => {
 			</AsideHeader>
 
 			<AsideBody>
-				<span>Weekly Gold Amount</span>
+				<span className="asideTitle">Weekly Gold Amount</span>
 
 				<ClassList></ClassList>
 			</AsideBody>
@@ -76,13 +76,14 @@ const AsideBody = styled.div`
 	flex-direction: column;
 	height: 100%;
 
-	span {
+	.asideTitle {
 		${titles}
 
 		font-size: 2.4375rem;
 		line-height: 2.9375rem;
 		letter-spacing: 0.05em;
 		color: ${color.font};
+		margin-bottom: 30px;
 	}
 `;
 
