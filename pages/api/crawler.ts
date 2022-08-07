@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 // import userAgentList from "../../public/json/userAgentList.json";
-import cookie from "../../public/json/cookie.json";
+// import cookie from "../../public/json/cookie.json";
 
 const puppeteer = require("puppeteer");
 
@@ -28,7 +28,7 @@ const puppeteers = async (name: { data: string }) => {
 	const randomNum = Math.floor(Math.random() * userAgentList.length);
 	const browser = await puppeteer.launch({
 		waitUntil: "networkidle2",
-		headless: true,
+		headless: false,
 		args: ["--no-sandbox", "--disable-setuid-sandbox"],
 	});
 	const data: any = [];
@@ -130,7 +130,7 @@ const puppeteers = async (name: { data: string }) => {
 		console.error(url, err);
 	}
 
-	await browser.close();
+	// await browser.close();
 	console.log("data", data);
 
 	return data;

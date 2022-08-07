@@ -17,3 +17,8 @@ export const searchMainClass = atom({
 	key: "searchMainClass",
 	default: "",
 });
+
+export const loadingState = atom({
+	key: "loadingState",
+	default: false,
+});

@@ -1,15 +1,8 @@
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import search from "../../lib/search";
-import { searchMainClass, toggleAside } from "../../store";
-import {
-	color,
-	description,
-	fadeIn,
-	flexCenter,
-	pageSetting,
-	titles,
-} from "../../styles/theme";
+import { loadingState, searchMainClass, toggleAside } from "../../store";
+import { color, description, fadeIn, flexCenter, pageSetting, titles } from "../../styles/theme";
 import Aside from "../Aside";
 
 interface IMain {
@@ -19,6 +12,7 @@ interface IMain {
 const Main: React.FC<IMain> = ({ title }) => {
 	const [toggle, setToggle] = useRecoilState(toggleAside);
 	const [text, setText] = useRecoilState(searchMainClass);
+	const [loading, setLoading] = useRecoilState(loadingState);
 
 	return (
 		<MainSection>
@@ -37,7 +31,7 @@ const Main: React.FC<IMain> = ({ title }) => {
 						flex={3.5}
 						height={16}
 						point={true}
-						onSubmit={async (e) => await search(e, text)}
+						onSubmit={async (e) => await search(e, text, setLoading)}
 					>
 						<img className="search" src="/image/search.svg" />
 						<input
@@ -118,14 +112,17 @@ const Box = styled.form<IBoxSection>`
 	border-radius: 2.625rem;
 	flex: ${(props) => props.flex};
 	height: ${(props) => `${props.height}rem`};
-	box-shadow: ${(props) =>
-		props.point && "0rem .75rem 1.9375rem rgba(0, 0, 0, 0.25)"};
+	box-shadow: ${(props) => props.point && "0rem .75rem 1.9375rem rgba(0, 0, 0, 0.25)"};
 	position: ${(props) => props.point && "relative"};
 	top: ${(props) => props.point && "1.25rem"};
 	left: ${(props) => props.point && "-1.25rem"};
 	box-sizing: border-box;
 	margin: 10px 20px;
 	${fadeIn}
+
+	@media ${(props) => props.theme.laptop} {
+		height: ${(props) => `${props.height / 1.3}rem`};
+	}
 
 	&:first-child {
 		left: -2.75rem;

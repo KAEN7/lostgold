@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+
 import Main from "../components/organisms/Main";
 
 const Index: NextPage = () => {
