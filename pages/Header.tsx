@@ -28,8 +28,10 @@ const HeaderSection = styled.header`
 
 	nav {
 		a {
-			margin-left: 1rem;
-			letter-spacing: 0.1rem;
+			margin-left: 1.5rem;
+			letter-spacing: 1px;
+			font-weight: bold;
+			color: ${color.gray};
 		}
 	}
 `;

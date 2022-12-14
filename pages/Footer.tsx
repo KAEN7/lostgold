@@ -14,6 +14,8 @@ const FooterSection = styled.footer`
 	justify-content: center;
 	align-items: center;
 	width: 100%;
+	padding-bottom: 0.5rem;
+	box-sizing: border-box;
 `;
 
 export default Footer;

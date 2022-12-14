@@ -6,13 +6,22 @@ import { flexCenter, color } from "../../styles/theme";
 const Loading = () => {
 	const [loading, setLoading] = useRecoilState(loadingState);
 
-	return <LoadingSpinner />;
+	return (
+		<LoadingSection loading={loading}>
+			<LoadingSpinner />
+		</LoadingSection>
+	);
 };
 
-const LoadingSection = styled.div`
+interface ILoading {
+	loading: boolean;
+}
+
+const LoadingSection = styled.div<ILoading>`
+	display: ${(props) => (props.loading ? "flex" : "none")};
 	width: 100vw;
 	height: 100vh;
-	position: relative;
+	position: fixed;
 	z-index: 9999;
 `;
 

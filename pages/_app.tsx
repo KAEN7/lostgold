@@ -6,6 +6,7 @@ import { RecoilRoot } from "recoil";
 import { color } from "../styles/theme";
 import Header from "./Header";
 import Footer from "./Footer";
+import Loading from "../components/atoms/Loading";
 
 function MyApp({ Component, pageProps }: any) {
 	return (
@@ -30,15 +31,18 @@ function MyApp({ Component, pageProps }: any) {
 			/>
 
 			<RecoilRoot>
+				<Loading />
+
 				<Header />
 				<Component {...pageProps} />
-				<script
-					async
-					src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6443631393154145"
-					crossOrigin="anonymous"
-				></script>
 				<Footer />
 			</RecoilRoot>
+
+			<script
+				async
+				src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6443631393154145"
+				crossOrigin="anonymous"
+			></script>
 		</AppSection>
 	);
 }
