@@ -4,19 +4,8 @@ import Head from "next/head";
 import { DefaultSeo } from "next-seo";
 import { RecoilRoot } from "recoil";
 import { color } from "../styles/theme";
-import Root from "./Root";
-
-const AppSection = styled.section`
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 95vw;
-	height: 95vh;
-	position: relative;
-	background: ${color.default};
-	overflow: hidden;
-	border-radius: 46px;
-`;
+import Header from "./Header";
+import Footer from "./Footer";
 
 function MyApp({ Component, pageProps }: any) {
 	return (
@@ -39,11 +28,30 @@ function MyApp({ Component, pageProps }: any) {
 					site_name: "Lost Gold",
 				}}
 			/>
+
 			<RecoilRoot>
-				<Root Component={Component} pageProps={pageProps} />
+				<Header />
+				<Component {...pageProps} />
+				<script
+					async
+					src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6443631393154145"
+					crossOrigin="anonymous"
+				></script>
+				<Footer />
 			</RecoilRoot>
 		</AppSection>
 	);
 }
+
+const AppSection = styled.section`
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	background: ${color.darkGray};
+`;
 
 export default MyApp;

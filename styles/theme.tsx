@@ -25,13 +25,12 @@ const theme = {
 
 // color
 export const color = {
-	default: "#ffffff",
-	lightDefault: "#EDEEF5",
-	font: "#403F43",
-	lightFont: "#BCBBBF",
-	darkPoint: "#3563DE",
-	point: "#6A90F9",
-	lightPoint: "#A7C0FD",
+	white: "#ffffff",
+	black: "#181a1e",
+	gray: "#2c2f36",
+	darkGray: "#212225",
+	point: "#c24100",
+	subPoint: "#1deac6",
 };
 
 // font
@@ -59,24 +58,10 @@ export const flexCenter = css`
 `;
 
 export const flexCenterDir = css`
-	${flexCenter}
-
-	flex-direction: column;
-`;
-
-export const pageSetting = css`
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
-	height: 95%;
-
-	background: ${color.lightDefault};
-	border-radius: 69px;
-
-	::-webkit-scrollbar {
-		display: none;
-	}
 `;
 
 // 스크롤 숨김
@@ -120,18 +105,6 @@ export const scrollBar = css`
 	&::-webkit-scrollbar-track {
 		background-color: rgba(0, 0, 0, 0);
 	}
-`;
-
-// 페이지 기본 스타일
-export const pageDefault = css`
-	height: 100vh;
-	width: 100vw;
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	background: ${color.default};
-	padding: 1rem;
-	overflow: hidden;
 `;
 
 export default theme;
