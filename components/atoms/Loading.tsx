@@ -29,7 +29,7 @@ const LoadingSpinner = styled.div`
 	margin-left: -32px;
 	border-radius: 50%;
 	border: 3px solid transparent;
-	border-top-color: ${color.default};
+	border-top-color: ${color.white};
 	border-bottom-color: ${color.point};
 	animation: loading 0.8s ease infinite;
 
