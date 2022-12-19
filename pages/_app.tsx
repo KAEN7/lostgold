@@ -1,24 +1,12 @@
 import "../styles/globals.css";
-import type { AppProps } from "next/app";
 import styled from "styled-components";
 import Head from "next/head";
 import { DefaultSeo } from "next-seo";
 import { RecoilRoot } from "recoil";
-
 import { color } from "../styles/theme";
-import Navigator from "../components/Navigator";
-import Aside from "../components/Aside";
-
-const AppSection = styled.section`
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 95vw;
-	height: 95vh;
-	background: ${color.default};
-	overflow: hidden;
-	border-radius: 46px;
-`;
+import Header from "./Header";
+import Footer from "./Footer";
+import Loading from "../components/atoms/Loading";
 
 function MyApp({ Component, pageProps }: any) {
 	return (
@@ -41,13 +29,33 @@ function MyApp({ Component, pageProps }: any) {
 					site_name: "Lost Gold",
 				}}
 			/>
+
 			<RecoilRoot>
-				<Navigator />
+				<Loading />
+
+				<Header />
 				<Component {...pageProps} />
-				<Aside />
+				<Footer />
 			</RecoilRoot>
+
+			<script
+				async
+				src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6443631393154145"
+				crossOrigin="anonymous"
+			></script>
 		</AppSection>
 	);
 }
+
+const AppSection = styled.section`
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	background: ${color.darkGray};
+`;
 
 export default MyApp;

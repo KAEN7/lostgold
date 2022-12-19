@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"target": "es5",
+		"target": "es2017",
 		"lib": ["dom", "dom.iterable", "esnext"],
 		"allowJs": true,
 		"skipLibCheck": true,
@@ -19,8 +19,8 @@
 		"next-env.d.ts",
 		"**/*.ts",
 		"**/*.tsx",
-		"stories/TableRow.storiestsx"
+		"stories/TableRow.storiestsx",
+		"components/Loading.jsx"
 	],
-	"files": ["./node_modules/redux-persist/types/integration/react.d.ts"],
 	"exclude": ["node_modules"]
 }

@@ -25,13 +25,12 @@ const theme = {
 
 // color
 export const color = {
-	default: "#ffffff",
-	lightDefault: "#EDEEF5",
-	font: "#403F43",
-	lightFont: "#BCBBBF",
-	darkPoint: "#3563DE",
-	point: "#6A90F9",
-	lightPoint: "#A7C0FD",
+	white: "#ffffff",
+	black: "#181a1e",
+	gray: "#2c2f36",
+	darkGray: "#212225",
+	point: "#c24100",
+	subPoint: "#1deac6",
 };
 
 // font
@@ -59,24 +58,10 @@ export const flexCenter = css`
 `;
 
 export const flexCenterDir = css`
-	${flexCenter}
-
-	flex-direction: column;
-`;
-
-export const pageSetting = css`
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	width: 100%;
-	height: 95%;
-	margin-right: 36px;
-	background: ${color.lightDefault};
-	border-radius: 69px;
-
-	::-webkit-scrollbar {
-		display: none;
-	}
+	align-items: center;
 `;
 
 // 스크롤 숨김
@@ -104,37 +89,22 @@ export const fadeIn = css`
 export const scrollBar = css`
 	padding: 0px 13px 0px 13px;
 	overflow-y: scroll;
-	height: 200px;
 	box-sizing: border-box;
-	color: white;
-	background-color: rgba(0, 0, 0, 0.8);
 	margin-right: 50px;
 
 	&::-webkit-scrollbar {
-		width: 6px;
+		width: 10px;
 	}
 
 	&::-webkit-scrollbar-thumb {
 		height: 17%;
-		background-color: rgba(255, 255, 255, 1);
-		border-radius: 10px;
+		background: #d9d9d9;
+		border-radius: 30px;
 	}
 
 	&::-webkit-scrollbar-track {
 		background-color: rgba(0, 0, 0, 0);
 	}
-`;
-
-// 페이지 기본 스타일
-export const pageDefault = css`
-	height: 100vh;
-	width: 100vw;
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	background: ${color.default};
-	padding: 1rem;
-	overflow: hidden;
 `;
 
 export default theme;

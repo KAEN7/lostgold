@@ -12,3 +12,13 @@ export const toggleAsideSelector = selector({
 		return temp;
 	},
 });
+
+export const searchCharacterList = atom({
+	key: "searchCharacterList",
+	default: [],
+});
+
+export const loadingState = atom({
+	key: "loadingState",
+	default: false,
+});
