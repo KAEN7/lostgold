@@ -5,9 +5,6 @@ import { SubTitle } from "../../components/atoms/SubTitle";
 import { color } from "../../styles/theme";
 
 const Profiles = ({ profiles, equipment, collectibles }: any) => {
-	console.log("Profiles Component profiles", profiles);
-	console.log("Profiles Component equipment", equipment);
-
 	const {
 		CharacterClassName,
 		CharacterImage,
@@ -27,7 +24,7 @@ const Profiles = ({ profiles, equipment, collectibles }: any) => {
 		TownLevel,
 		TownName,
 		UsingSkillPoint,
-	} = profiles;
+	}: any = profiles;
 
 	return (
 		<ProfilesSection>
