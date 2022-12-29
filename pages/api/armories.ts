@@ -4,7 +4,7 @@ import axios from "axios";
 const armories = async (req: NextApiRequest, res: NextApiResponse) => {
 	const name: string | any = req.query.data;
 
-	const armoriesList: any = [];
+	const armoriesList: any = {};
 
 	const apiList = [
 		"profiles",
@@ -34,7 +34,11 @@ const armories = async (req: NextApiRequest, res: NextApiResponse) => {
 							},
 						}
 					)
-					.then(({ data }) => (armoriesList[idx] = data))
+					.then(
+						({ data }) =>
+							(armoriesList[path === "combat-skills" ? "combatSkills" : path] =
+								data)
+					)
 					.catch((err) => {
 						console.error("Characters ERROR", err);
 						res.status(404).json({ err: "Not Found" });
